@@ -4,6 +4,7 @@ public class App {
 	int[] opCards=new int[] {0,0,0,0,0};
 	int[] aipCards=new int[] {0,0,0,0,0};
 
+	
 	public int[] getOpCards()
 	{
 		Scanner scanner = new Scanner(System.in);
