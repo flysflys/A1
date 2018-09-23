@@ -4,8 +4,7 @@ public class App {
 	int[] opCards=new int[] {0,0,0,0,0};
 	int[] aipCards=new int[] {0,0,0,0,0};
 
-	
-	public int[] getOpCards()
+	public App()
 	{
 		Scanner scanner = new Scanner(System.in);
 		String[] tempAry=new String[] {"","","","",""};
@@ -15,19 +14,26 @@ public class App {
 			tempAry[i]=scanner.next();
 		}
 		opCards=convertStringToInt(tempAry);
+		
+		
+		tempAry=new String[] {"","","","",""};
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("the "+i+" card you want to give to AIP");
+			tempAry[i]=scanner.next();
+		}
+		aipCards=convertStringToInt(tempAry);
+		
+	}
+	public int[] getOpCards()
+	{
+		
 		return opCards;
 		
 	}
 	public int[] getAIPCards()
 	{
-		Scanner scanner = new Scanner(System.in);
-		String[] tempAry=new String[] {"","","","",""};
-		for(int i=0;i<5;i++)
-		{
-			System.out.println("the "+i+" card you want to give to aip");
-			tempAry[i]=scanner.next();
-		}
-		aipCards=convertStringToInt(tempAry);
+		
 		return aipCards;
 		
 	}

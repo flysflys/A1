@@ -11,7 +11,7 @@ public class TheNumberOfCardsTest {
 	}
 	public void theNumberOfCardsTestforOP() {
 
-		assertEquals(5,test.getOpCards().length)
+		assertEquals(5,test.getOpCards().length);
 	}
 
 }
