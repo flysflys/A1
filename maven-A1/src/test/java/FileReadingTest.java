@@ -12,5 +12,12 @@ public class FileReadingTest {
 		
 		assertFalse(Arrays.equals(result,intArray));
 	}
+	public void ReadingCardsFromInputForAIPTest() {
+		App test = new App();
+		int[] result=test.getAIPCards();
+		int[] intArray = new int[] {0,0,0,0,0};
+		
+		assertFalse(Arrays.equals(result,intArray));
+	}
 
 }
