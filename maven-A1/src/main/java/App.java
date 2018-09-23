@@ -17,6 +17,19 @@ public class App {
 		return opCards;
 		
 	}
+	public int[] getAIPCards()
+	{
+		Scanner scanner = new Scanner(System.in);
+		String[] tempAry=new String[] {"","","","",""};
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("the "+i+" card you want to give to aip");
+			tempAry[i]=scanner.next();
+		}
+		aipCards=convertStringToInt(tempAry);
+		return aipCards;
+		
+	}
 	private int[] convertStringToInt(String[] strAry)
 	{
 		int[] tempAry = new int[strAry.length];
