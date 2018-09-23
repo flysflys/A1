@@ -1,13 +1,15 @@
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+import java.util.Arrays;
 public class FileReadingTest {
 
 	@Test
-	public void test() {
+	public void ReadingCardsFromInputForOPTest() {
 		App test = new App();
-		assertEquals(1,1);
+		int[] result=test.getOpCards();
+		int[] intArray = new int[] {0,0,0,0,0};
+		assertFalse(Arrays.equals(result,intArray));
 	}
 
 }
