@@ -24,6 +24,10 @@ public class App {
 			System.out.println("the "+i+" card you want to give to AIP");
 			tempAry[i]=scanner.next();
 		}
+		for(int i=0;i<13;i++)
+		{
+			aipCardsNum[i]=0;
+		}
 		aipCards=convertStringToInt(tempAry);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
@@ -42,7 +46,7 @@ public class App {
 	}
 	public Hands getHands()
 	{
-		if(isSameSuit(aipCards)!=0)
+		if(isSameSuit(aipCards)!=-1)
 		{
 			if(isFlush(aipCards)==0)
 			{
@@ -53,14 +57,18 @@ public class App {
 				return Hands.SF;
 			}			
 		}
-		if(isFOAK(aipCardsNum)!=-1)
+		if(isFH(aipCardsNum)!=-1)
+		{
+			return Hands.FH;
+		}
+		else if(isFOAK(aipCardsNum)!=-1)
 		{
 			return Hands.FOAK;
 		}
-		
-		else if(isFH(aipCardsNum)!=-1)
+	
+		else if(isSameSuit(aipCards)!=-1)
 		{
-			return Hands.FH;
+			return Hands.STRAIGHT;
 		}
 		else if(isTOAK(aipCardsNum)!=-1)
 		{
@@ -166,7 +174,10 @@ public class App {
 	}
 	private void printAIPCards()
 	{
-		System.out.print("AIP has "+aipCards[0]+" "+aipCards[1]+" "+aipCards[2]+" "+aipCards[3]+" "+aipCards[4]);
+		System.out.println("AIP has "+aipCards[0]+" "+aipCards[1]+" "+aipCards[2]+" "+aipCards[3]+" "+aipCards[4]);
+		System.out.println("1 2 3 4 5 6 7 8 9 0 J Q K");
+		for(int i=0;i<13;i++)
+			System.out.print(aipCardsNum[i]+" ");
 	}
 	private void printOPCards()
 	{
@@ -174,11 +185,11 @@ public class App {
 	}
 	private int getSuit(int card)
 	{
-		if(card<13)
+		if(card<14)
 			return 1;   //club
-		else if(card<25)
+		else if(card<27)
 			return 2;   //diamond
-		else if(card<37)
+		else if(card<40)
 			return 3;   //heart
 		else
 			return 4;   //spade
