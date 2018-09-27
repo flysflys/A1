@@ -57,7 +57,12 @@ public class App {
 		{
 			return Hands.FOAK;
 		}
-		if(isTOAK(aipCardsNum)!=-1)
+		
+		else if(isFH(aipCardsNum)!=-1)
+		{
+			return Hands.FH;
+		}
+		else if(isTOAK(aipCardsNum)!=-1)
 		{
 			return Hands.TOAK;
 		}
@@ -68,11 +73,11 @@ public class App {
 		if(aipCards[0]==0||aipCards[1]==0||aipCards[2]==0||aipCards[3]==0||aipCards[4]==0)
 			return;
 		int[] temp=new int[52];
-		temp[aipCards[0]]=1;
-		temp[aipCards[1]]=1;
-		temp[aipCards[2]]=1;
-		temp[aipCards[3]]=1;
-		temp[aipCards[4]]=1;
+		temp[aipCards[0]-1]=1;
+		temp[aipCards[1]-1]=1;
+		temp[aipCards[2]-1]=1;
+		temp[aipCards[3]-1]=1;
+		temp[aipCards[4]-1]=1;
 		int c=0;
 		for(int i=0;i<52;i++)
 		{
@@ -84,6 +89,23 @@ public class App {
 		}
 		printAIPCards();
 		return;
+	}
+	private int isFH(int[] cards)
+	{
+		
+		int temp=-1;
+		boolean havePair=false;
+		for(int i=0; i<13;i++)
+		{
+			if(cards[i]==3)
+				temp=i+1;
+			if(cards[i]==2)
+				havePair=true;
+		}
+		if(havePair)
+			return temp;
+		else
+			return -1;
 	}
 	private int isFOAK(int[] cards)
 	{
@@ -98,18 +120,15 @@ public class App {
 	private int isTOAK(int[] cards)
 	{
 		int temp=-1;
-		boolean havePair=false;
+		
 		for(int i=0; i<13;i++)
 		{
 			if(cards[i]==3)
 				temp=i+1;
-			if(cards[i]==2)
-				havePair=true;
 		}
-		if(havePair)
+		
 			return temp;
-		else
-			return -1;
+
 	}
 	private int isFlush(int[] cards)
 	{
