@@ -10,7 +10,7 @@ public class App {
 		String[] tempAry=new String[] {"","","","",""};
 		for(int i=0;i<5;i++)
 		{
-			System.out.println("the "+i+" card you want to give to opponent");
+			System.out.println("the "+(i+1)+" card you want to give to opponent");
 			tempAry[i]=scanner.next();
 		}
 		opCards=convertStringToInt(tempAry);
@@ -23,7 +23,7 @@ public class App {
 			tempAry[i]=scanner.next();
 		}
 		aipCards=convertStringToInt(tempAry);
-		
+		sortAIPCards();
 	}
 	public int[] getOpCards()
 	{
@@ -36,6 +36,94 @@ public class App {
 		
 		return aipCards;
 		
+	}
+	public Hands getHands()
+	{
+		if(isSameSuit(aipCards)!=0)
+		{
+			if(isFlush(aipCards)==0)
+			{
+				return Hands.RF;
+			}
+			
+		}
+		return Hands.NONE;
+	}
+	private void sortAIPCards()
+	{
+		if(aipCards[0]==0||aipCards[1]==0||aipCards[2]==0||aipCards[3]==0||aipCards[4]==0)
+			return;
+		int[] temp=new int[52];
+		temp[aipCards[0]]=1;
+		temp[aipCards[1]]=1;
+		temp[aipCards[2]]=1;
+		temp[aipCards[3]]=1;
+		temp[aipCards[4]]=1;
+		int c=0;
+		for(int i=0;i<52;i++)
+		{
+			if(temp[i]==1)
+			{
+				aipCards[c]=i+1;
+				c++;
+			}
+		}
+		printAIPCards();
+		return;
+	}
+	private int isFlush(int[] cards)
+	{
+		if(cards[0]+1==cards[1]&&cards[1]+1==cards[2]&&cards[2]+1==cards[3]&&cards[3]+1==cards[4])
+		{
+			return 1;
+		}
+		else if(cards[1]+1==cards[2]&&cards[2]+1==cards[3]&&cards[3]+1==cards[4]&&cards[0]+9==cards[1])//A 10 J Q K
+		{
+			return 0;
+		}
+		else
+			return -1;
+	}
+	private int isSameSuit(int[] cards)
+	{
+		if(getSuit(cards[0])==1 && getSuit(cards[1])==1 && getSuit(cards[2])==1 && getSuit(cards[3])==1 && getSuit(cards[4])==1)
+		{
+			return 1;
+		}
+		if(getSuit(cards[0])==2 && getSuit(cards[1])==2 && getSuit(cards[2])==2 && getSuit(cards[3])==2 && getSuit(cards[4])==2)
+		{
+			return 2;
+		}
+		if(getSuit(cards[0])==3 && getSuit(cards[1])==3 && getSuit(cards[2])==3 && getSuit(cards[3])==3 && getSuit(cards[4])==3)
+		{
+			return 3;
+		}
+		if(getSuit(cards[0])==4 && getSuit(cards[1])==4 && getSuit(cards[2])==4 && getSuit(cards[3])==4 && getSuit(cards[4])==4)
+		{
+			return 4;
+		}
+		else
+			return -1;
+	}
+	private void printAIPCards()
+	{
+		System.out.print("AIP has "+aipCards[0]+" "+aipCards[1]+" "+aipCards[2]+" "+aipCards[3]+" "+aipCards[4]);
+	}
+	private void printOPCards()
+	{
+		System.out.print("opponent has "+opCards[0]+" "+opCards[1]+" "+opCards[2]+" "+opCards[3]+" "+opCards[4]);
+	}
+	private int getSuit(int card)
+	{
+		if(card<13)
+			return 1;   //club
+		else if(card<25)
+			return 2;   //diamond
+		else if(card<37)
+			return 3;   //heart
+		else
+			return 4;   //spade
+					
 	}
 	private int[] convertStringToInt(String[] strAry)
 	{
@@ -210,4 +298,5 @@ public class App {
 		}
 		return tempAry;
 	}
+	
 }

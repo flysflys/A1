@@ -7,7 +7,7 @@ public class RoyalFlushTest {
 	@Test
 	public void test() {
 		App test = new App();
-		assertEquals(Hands.RoyalFlush,test.getHands());
+		assertEquals(Hands.RF,test.getHands());
 	}
 
 }
