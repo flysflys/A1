@@ -5,7 +5,7 @@ public enum Hands {
 	FOAK,//Four of a kind ,
 	FH,//Full house ,
 	FLUSH,
-	STAIGHT,
+	STRAIGHT,
 	TOAK,//Three of a kind ,
 	TP,//Two pair,
 	PAIR
