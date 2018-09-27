@@ -57,6 +57,10 @@ public class App {
 		{
 			return Hands.FOAK;
 		}
+		if(isTOAK(aipCardsNum)!=-1)
+		{
+			return Hands.TOAK;
+		}
 		return Hands.NONE;
 	}
 	private void sortAIPCards()
@@ -90,6 +94,22 @@ public class App {
 				return i+1;
 		}
 		return -1;
+	}
+	private int isTOAK(int[] cards)
+	{
+		int temp=-1;
+		boolean havePair=false;
+		for(int i=0; i<13;i++)
+		{
+			if(cards[i]==3)
+				temp=i+1;
+			if(cards[i]==2)
+				havePair=true;
+		}
+		if(havePair)
+			return temp;
+		else
+			return -1;
 	}
 	private int isFlush(int[] cards)
 	{
