@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class App {
 	int[] opCards=new int[] {0,0,0,0,0};
+	int[] opCardsNum=new int[13];
 	int[] aipCards=new int[] {0,0,0,0,0};
-
+	int[] aipCardsNum=new int[13];
+	
 	public App()
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -23,6 +25,7 @@ public class App {
 			tempAry[i]=scanner.next();
 		}
 		aipCards=convertStringToInt(tempAry);
+		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 	}
 	public int[] getOpCards()
@@ -45,7 +48,14 @@ public class App {
 			{
 				return Hands.RF;
 			}
-			
+			else if(isFlush(aipCards)==1)
+			{
+				return Hands.SF;
+			}			
+		}
+		if(isFOAK(aipCardsNum)!=-1)
+		{
+			return Hands.FOAK;
 		}
 		return Hands.NONE;
 	}
@@ -70,6 +80,16 @@ public class App {
 		}
 		printAIPCards();
 		return;
+	}
+	private int isFOAK(int[] cards)
+	{
+		
+		for(int i=0; i<13;i++)
+		{
+			if(cards[i]==4)
+				return i+1;
+		}
+		return -1;
 	}
 	private int isFlush(int[] cards)
 	{
@@ -124,6 +144,67 @@ public class App {
 		else
 			return 4;   //spade
 					
+	}
+	private int[] countNum(int[] cards)
+	{
+		int[] temp=new int[13];
+		for(int i=0;i<5;i++)
+		{			
+			if(cards[i]%13==1)
+			{
+				
+				temp[0]++;
+			}
+			else if(cards[i]%13==2)
+			{
+				temp[1]++;
+			}
+			else if(cards[i]%13==3)
+			{
+				temp[2]++;
+			}
+			else if(cards[i]%13==4)
+			{
+				temp[3]++;
+			}
+			else if(cards[i]%13==5)
+			{
+				temp[4]++;
+			}
+			else if(cards[i]%13==6)
+			{
+				temp[5]++;
+			}
+			else if(cards[i]%13==7)
+			{
+				temp[6]++;
+			}
+			else if(cards[i]%13==8)
+			{
+				temp[7]++;
+			}
+			else if(cards[i]%13==9)
+			{
+				temp[8]++;
+			}
+			else if(cards[i]%13==10)
+			{
+				temp[9]++;
+			}
+			else if(cards[i]%13==11)
+			{
+				temp[10]++;
+			}
+			else if(cards[i]%13==0)
+			{
+				temp[11]++;
+			}
+			else
+				temp[12]++;
+			
+			
+		}
+		return temp;
 	}
 	private int[] convertStringToInt(String[] strAry)
 	{
