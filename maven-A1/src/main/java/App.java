@@ -1,37 +1,38 @@
-import java.util.Scanner;
+import java.io.*;
 
 public class App {
 	int[] opCards=new int[] {0,0,0,0,0};
 	int[] opCardsNum=new int[13];
 	int[] aipCards=new int[] {0,0,0,0,0};
 	int[] aipCardsNum=new int[13];
-	
+	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
-	{
-		Scanner scanner = new Scanner(System.in);
-		String[] tempAry=new String[] {"","","","",""};
-		for(int i=0;i<5;i++)
+	{		
+		String[] tempAry=null;
+		String[] tempAry2=null;
+		File file = new File(path);  
+			  
+		String str; 
+		try
 		{
-			System.out.println("the "+(i+1)+" card you want to give to opponent");
-			tempAry[i]=scanner.next();
+			BufferedReader br = new BufferedReader(new FileReader(file)); 
+			str = br.readLine();
+			tempAry=str.split(",");
+			str = br.readLine();
+			tempAry2=str.split(",");
+			br.close();
 		}
-		opCards=convertStringToInt(tempAry);
-		
-		
-		tempAry=new String[] {"","","","",""};
-		for(int i=0;i<5;i++)
+		catch (Exception e)
 		{
-			System.out.println("the "+i+" card you want to give to AIP");
-			tempAry[i]=scanner.next();
+			System.out.print("ERROR!");
 		}
-		for(int i=0;i<13;i++)
-		{
-			aipCardsNum[i]=0;
-		}
+		opCards=convertStringToInt(tempAry2);
 		aipCards=convertStringToInt(tempAry);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
+
 	}
+	
 	public int[] getOpCards()
 	{
 		
