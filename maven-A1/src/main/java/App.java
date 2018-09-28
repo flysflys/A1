@@ -74,6 +74,10 @@ public class App {
 		{
 			return Hands.TOAK;
 		}
+		else if(isTP(aipCardsNum)!=-1)
+		{
+			return Hands.TP;
+		}
 		return Hands.NONE;
 	}
 	private void sortAIPCards()
@@ -97,6 +101,29 @@ public class App {
 		}
 		printAIPCards();
 		return;
+	}
+	private int isTP(int[] cards)
+	{
+		int temp=-1;
+		int temp2=-1;
+		for(int i=0; i<13;i++)
+		{
+			if(cards[i]==2)
+			{
+				if(temp!=-1)
+				{
+					temp2=i+1;
+				}
+				else
+				{
+					temp=i;
+				}
+			}
+		}
+		if(temp2==-1)
+			return -1;
+		return temp2;
+		
 	}
 	private int isFH(int[] cards)
 	{
@@ -132,10 +159,12 @@ public class App {
 		for(int i=0; i<13;i++)
 		{
 			if(cards[i]==3)
+			{
 				temp=i+1;
+			}
 		}
 		
-			return temp;
+		return temp;
 
 	}
 	private int isFlush(int[] cards)
