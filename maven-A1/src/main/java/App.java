@@ -68,6 +68,10 @@ public class App {
 	
 		else if(isSameSuit(aipCards)!=-1)
 		{
+			return Hands.FLUSH;
+		}
+		else if(isStraight(aipCardsNum)!=-1)
+		{
 			return Hands.STRAIGHT;
 		}
 		else if(isTOAK(aipCardsNum)!=-1)
@@ -77,6 +81,10 @@ public class App {
 		else if(isTP(aipCardsNum)!=-1)
 		{
 			return Hands.TP;
+		}
+		else if(isPair(aipCardsNum)!=-1)
+		{
+			return Hands.PAIR;
 		}
 		return Hands.NONE;
 	}
@@ -101,6 +109,21 @@ public class App {
 		}
 		printAIPCards();
 		return;
+	}
+	private int isPair(int[] cards)
+	{
+
+		for(int i=0; i<13;i++)
+		{
+			if(cards[i]==2)
+			{
+				return i+1;
+			}
+		}
+
+		return -1;
+
+		
 	}
 	private int isTP(int[] cards)
 	{
@@ -166,6 +189,27 @@ public class App {
 		
 		return temp;
 
+	}
+	private int isStraight(int[] cards)
+	{
+		for(int i =0;i<9;i++)
+		{
+			if(cards[i]==1)
+			{
+				if(cards[i+1]==1&&cards[i+2]==1&&cards[i+3]==1&&cards[i+4]==1)
+				{
+					return i+5;
+				}
+			}
+		}
+		if(cards[0]==1)
+		{
+			if(cards[9]==1&&cards[10]==1&&cards[11]==1&&cards[12]==1)
+			{
+				return 13;
+			}
+		}
+		return -1;
 	}
 	private int isFlush(int[] cards)
 	{
