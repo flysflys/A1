@@ -45,6 +45,15 @@ public class App {
 		return aipCards;
 		
 	}
+	public void exchange()
+	{
+		Hands oldHands=getHands(); 
+		if(oldHands==Hands.RF||oldHands==Hands.SF||oldHands==Hands.FH||oldHands==Hands.FOAK||oldHands==Hands.FLUSH||oldHands==Hands.STRAIGHT)
+		{
+			return;
+		}
+		
+	}
 	public Hands getHands()
 	{
 		if(isSameSuit(aipCards)!=-1)

@@ -1,0 +1,5 @@
+<Number> <name of equivalence class>  <short description>  <list of JUnit tests addressing it>
+1	  AIP doesnt exchange	AIP gets a straight 
+	  			or better
+-----------------------------------------------------------------------------------------------
+2	
