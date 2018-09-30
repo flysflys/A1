@@ -78,7 +78,11 @@ public class App {
 		}
 		else if(cardsFromRF()!=-1)
 		{
-			System.out.println("exchange cards for RF= "+cardsFromRF());
+			System.out.println("1 card away from RF");
+			int[] temp= {cardsFromRF()};
+			redraw(temp);
+			printAIPCards();
+			
 		}
 		else
 			System.out.println("error");
@@ -89,11 +93,13 @@ public class App {
 	{
 		if(isSameSuit(aipCards)!=-1)
 		{
-			if(isFlush(aipCards)==0)
+			
+			if(isRFlush(aipCardsNum)==1)
 			{
+				
 				return Hands.RF;
 			}
-			else if(isFlush(aipCards)==1)
+			else if(isStraight(aipCardsNum)!=-1)
 			{
 				return Hands.SF;
 			}			
@@ -109,6 +115,7 @@ public class App {
 	
 		else if(isSameSuit(aipCards)!=-1)
 		{
+
 			return Hands.FLUSH;
 		}
 		else if(isStraight(aipCardsNum)!=-1)
@@ -128,6 +135,17 @@ public class App {
 			return Hands.PAIR;
 		}
 		return Hands.NONE;
+	}
+	private void redraw(int [] cards)
+	{
+		for(int i =0;i<cards.length;i++)
+		{
+			System.out.println("discarding "+(i+1)+" card");
+			aipCards[cards[i]]=extraCards[i];
+			System.out.println("draw a "+extraCards[i]);
+		}
+		aipCardsNum=countNum(aipCards);
+		sortAIPCards();
 	}
 	private int numOfSuit()
 	{
@@ -199,13 +217,10 @@ public class App {
 		}
 		if(count>=2)
 			return -1;		
-		if(aipCardsNum[0]==1&&aipCardsNum[9]==1&&aipCardsNum[10]==1&&aipCardsNum[11]==1&&aipCardsNum[12]==1)
-		{
-			return -2;
-		}
 		count=0;
 		for(int i=0;i<5;i++)
 		{
+			
 			if(aipCards[i]%13!=1&&aipCards[i]%13!=10&&aipCards[i]%13!=11&&aipCards[i]%13!=12&&aipCards[i]%13!=0)
 			{
 				return i;
@@ -219,17 +234,13 @@ public class App {
 		{		
 			int wrongSuit=wrongSuitRF();
 			int wrongRank=wrongRankRF();
-			if(wrongRank==wrongSuit)
+			if(wrongRank==wrongSuit&&wrongSuit!=-1)
 			{
+
 				return wrongRank;
 			}
 			else
 				return -1;
-		}
-		if(numOfSuit()==1)
-		{		
-			int wrongRank=wrongRankRF();			
-			return wrongRank;			
 		}
 		else
 			return -1;
@@ -353,23 +364,22 @@ public class App {
 		{
 			if(cards[9]==1&&cards[10]==1&&cards[11]==1&&cards[12]==1)
 			{
-				return 13;
+				return 1;
 			}
 		}
 		return -1;
 	}
-	private int isFlush(int[] cards)
+	private int isRFlush(int[] cards)
 	{
-		if(cards[0]+1==cards[1]&&cards[1]+1==cards[2]&&cards[2]+1==cards[3]&&cards[3]+1==cards[4])
+		
+		if(cards[0]==1)
 		{
-			return 1;
+			if(cards[9]==1&&cards[10]==1&&cards[11]==1&&cards[12]==1)
+			{
+				return 1;
+			}
 		}
-		else if(cards[1]+1==cards[2]&&cards[2]+1==cards[3]&&cards[3]+1==cards[4]&&cards[0]+9==cards[1])//A 10 J Q K
-		{
-			return 0;
-		}
-		else
-			return -1;
+		return -1;
 	}
 	private int isSameSuit(int[] cards)
 	{
