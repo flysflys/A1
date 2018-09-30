@@ -5,11 +5,14 @@ public class App {
 	int[] opCardsNum=new int[13];
 	int[] aipCards=new int[] {0,0,0,0,0};
 	int[] aipCardsNum=new int[13];
+	int[] extraCards=null;
 	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
 	{		
 		String[] tempAry=null;
-		String[] tempAry2=null;
+		String[] tempAry1=new String[5];
+		String[] tempAry2=new String[5];
+		String[] tempAry3=null;
 		File file = new File(path);  
 			  
 		String str; 
@@ -17,9 +20,29 @@ public class App {
 		{
 			BufferedReader br = new BufferedReader(new FileReader(file)); 
 			str = br.readLine();
-			tempAry=str.split(",");
-			str = br.readLine();
-			tempAry2=str.split(",");
+
+			tempAry=str.split("\\s+");
+
+			for(int i =0;i<5;i++)
+			{
+				tempAry1[i]=tempAry[i];
+			}
+
+			for(int i =0;i<5;i++)
+			{
+				tempAry2[i]=tempAry[i+5];
+			}
+
+			if(tempAry.length>10)
+			{
+				tempAry3=new String[tempAry.length-10];
+				for(int i =0;i<tempAry3.length;i++)
+				{
+					tempAry3[i]=tempAry[i+10];
+				}
+				extraCards=convertStringToInt(tempAry3);
+			}
+
 			br.close();
 		}
 		catch (Exception e)
@@ -27,7 +50,7 @@ public class App {
 			System.out.print("ERROR!");
 		}
 		opCards=convertStringToInt(tempAry2);
-		aipCards=convertStringToInt(tempAry);
+		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 
@@ -50,8 +73,16 @@ public class App {
 		Hands oldHands=getHands(); 
 		if(oldHands==Hands.RF||oldHands==Hands.SF||oldHands==Hands.FH||oldHands==Hands.FOAK||oldHands==Hands.FLUSH||oldHands==Hands.STRAIGHT)
 		{
+			System.out.println("no need for exchange");
 			return;
 		}
+		else if(cardsFromRF()!=-1)
+		{
+			System.out.println("exchange cards for RF= "+cardsFromRF());
+		}
+		else
+			System.out.println("error");
+		
 		
 	}
 	public Hands getHands()
@@ -97,6 +128,112 @@ public class App {
 			return Hands.PAIR;
 		}
 		return Hands.NONE;
+	}
+	private int numOfSuit()
+	{
+		int[] suits=new int [4];
+		for(int i=0;i<5;i++)
+		{
+			if(aipCards[i]<=13)
+			{
+				suits[0]++;
+			}
+			else if(aipCards[i]<=26)
+			{
+				suits[1]++;
+			}
+			else if(aipCards[i]<=39)
+			{
+				suits[2]++;
+			}
+			else
+			{
+				suits[3]++;
+			}
+		}
+		int count=0;
+		for(int i=0;i<4;i++)
+		{
+			if(suits[i]>=1)
+			{
+				count++;
+			}
+		}
+
+		return count;
+	}
+	private int wrongSuitRF()
+	{
+		if(getSuit(aipCards[0])==getSuit(aipCards[1]))
+		{
+			for(int i=2;i<5;i++)
+			{
+				if(getSuit(aipCards[0])!=getSuit(aipCards[i]))
+				{
+					return i;
+				}
+			}
+		}
+		else
+		{
+			if(getSuit(aipCards[0])==getSuit(aipCards[2]))
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		return -1;			
+	}
+	private int wrongRankRF()
+	{
+		int count=0;
+		for(int i=0;i<13;i++)
+		{
+			if(i!=0&&i!=9&&i!=10&&i!=11&&i!=12&&aipCardsNum[i]==1)
+			{
+				count++;
+			}
+		}
+		if(count>=2)
+			return -1;		
+		if(aipCardsNum[0]==1&&aipCardsNum[9]==1&&aipCardsNum[10]==1&&aipCardsNum[11]==1&&aipCardsNum[12]==1)
+		{
+			return -2;
+		}
+		count=0;
+		for(int i=0;i<5;i++)
+		{
+			if(aipCards[i]%13!=1&&aipCards[i]%13!=10&&aipCards[i]%13!=11&&aipCards[i]%13!=12&&aipCards[i]%13!=0)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	private int cardsFromRF()
+	{
+		if(numOfSuit()==2)
+		{		
+			int wrongSuit=wrongSuitRF();
+			int wrongRank=wrongRankRF();
+			if(wrongRank==wrongSuit)
+			{
+				return wrongRank;
+			}
+			else
+				return -1;
+		}
+		if(numOfSuit()==1)
+		{		
+			int wrongRank=wrongRankRF();			
+			return wrongRank;			
+		}
+		else
+			return -1;
+		
 	}
 	private void sortAIPCards()
 	{
@@ -261,6 +398,7 @@ public class App {
 		System.out.println("1 2 3 4 5 6 7 8 9 0 J Q K");
 		for(int i=0;i<13;i++)
 			System.out.print(aipCardsNum[i]+" ");
+		System.out.println("");
 	}
 	private void printOPCards()
 	{
