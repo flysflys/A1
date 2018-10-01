@@ -84,6 +84,14 @@ public class App {
 			printAIPCards();
 			
 		}
+		else if(cardsFromSF()!=-1)
+		{
+			System.out.println("1 card away from SF");
+			int[] temp= {cardsFromSF()};
+			redraw(temp);
+			printAIPCards();
+			
+		}
 		else
 			System.out.println("error");
 		
@@ -234,10 +242,62 @@ public class App {
 		{		
 			int wrongSuit=wrongSuitRF();
 			int wrongRank=wrongRankRF();
+
 			if(wrongRank==wrongSuit&&wrongSuit!=-1)
 			{
 
 				return wrongRank;
+			}
+			else
+				return -1;
+		}
+		else
+			return -1;
+		
+	}
+	private boolean wrongRankSF(int index)
+	{
+		int indexWrong=-1;
+		int count=0;
+		boolean check=false;
+		for(int i=0;i<10;i++)
+		{
+			
+			if(aipCardsNum[i]==1&&i!=index)
+			{
+
+				count=0;
+				for(int x=1;x<=4;x++)
+				{
+					if(aipCardsNum[i+x]==1&&i!=index)
+					{
+						count++;
+					}
+				}
+				
+
+				if(count==3)
+				{
+					return true;
+				}
+
+			}
+		}
+		return false;
+	}
+	private int cardsFromSF()
+	{
+		if(numOfSuit()==2)
+		{		
+			int wrongSuit=wrongSuitRF();
+			System.out.println("wrongSuit= "+wrongSuit);
+			if(wrongSuit==-1)
+				return -1;
+			boolean wrongRank=wrongRankSF(wrongSuit);
+			if(wrongRank)
+			{
+
+				return wrongSuit;
 			}
 			else
 				return -1;
@@ -476,7 +536,7 @@ public class App {
 			{
 				temp[10]++;
 			}
-			else if(cards[i]%13==0)
+			else if(cards[i]%13==12)
 			{
 				temp[11]++;
 			}
