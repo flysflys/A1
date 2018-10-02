@@ -136,7 +136,12 @@ public class App {
 			printAIPCards();			
 		}
 		else
-			System.out.println("error");
+		{
+			System.out.println("keep the highest 2, exchange other 3");
+			int[] temp= cardsFromS10();
+			redraw(temp);
+			printAIPCards();	
+		}
 		
 		
 	}
@@ -628,6 +633,30 @@ public class App {
 		}
 		return null;
 	}
+	private int[] cardsFromS10()
+	{
+		int[] result=new int[3];
+		int count=0;
+		int j=0;
+		for(int i=12;i>=0;i--)
+		{
+			if(count==2&&aipCardsNum[i]==1)
+			{
+				result[j]=getIndexFromNumToCard(i);
+				j++;
+			}
+			if(j==3)
+				return result;
+			if(count<2&&aipCardsNum[i]==1)
+			{
+				count++;
+			}
+			
+		}
+		return null;
+	}
+		
+	
 	private int getIndexFromNumToCard(int num)
 	{
 		for(int i=0;i<5;i++)
