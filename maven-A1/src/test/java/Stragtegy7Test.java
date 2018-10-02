@@ -6,7 +6,10 @@ public class Stragtegy7Test {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		App test = new App();
+
+		test.exchange();
+		assertEquals(Hands.FLUSH,test.getHands());
 	}
 
 }
