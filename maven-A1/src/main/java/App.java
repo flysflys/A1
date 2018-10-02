@@ -112,8 +112,14 @@ public class App {
 			System.out.println("1 card away from STRAIGHT");
 			int[] temp= {cardsFromSTRAIGHT()};
 			redraw(temp);
-			printAIPCards();
-			
+			printAIPCards();			
+		}
+		else if(cardsFromS7()!=null)
+		{
+			System.out.println("3 cards are in same suit");
+			int[] temp= cardsFromS7();
+			redraw(temp);
+			printAIPCards();			
 		}
 		else
 			System.out.println("error");
@@ -180,26 +186,8 @@ public class App {
 	}
 	private int numOfSuit()
 	{
-		int[] suits=new int [4];
-		for(int i=0;i<5;i++)
-		{
-			if(aipCards[i]<=13)
-			{
-				suits[0]++;
-			}
-			else if(aipCards[i]<=26)
-			{
-				suits[1]++;
-			}
-			else if(aipCards[i]<=39)
-			{
-				suits[2]++;
-			}
-			else
-			{
-				suits[3]++;
-			}
-		}
+		int[] suits=getSuitAry();
+		
 		int count=0;
 		for(int i=0;i<4;i++)
 		{
@@ -366,29 +354,9 @@ public class App {
 		return getIndexFromNumToCard(singleIndex);
 		
 	}
-	
 	private int cardsFromFLUSH()
 	{
-		int[] suits=new int [4];
-		for(int i=0;i<5;i++)
-		{
-			if(getSuit(aipCards[i])==1)
-			{
-				suits[0]++;
-			}
-			else if(getSuit(aipCards[i])==2)
-			{
-				suits[1]++;
-			}
-			else if(getSuit(aipCards[i])==3)
-			{
-				suits[2]++;
-			}
-			else
-			{
-				suits[3]++;
-			}
-		}
+		int[] suits=getSuitAry();
 		int color=-1;
 		int singleColor=-1;
 		for(int i=0;i<4;i++)
@@ -443,6 +411,67 @@ public class App {
 		
 			
 	}
+	private int[] cardsFromS7()
+	{
+		int[] suits=getSuitAry();
+		int color=-1;
+		int wrongColor=-1, wrongColor2=-1;
+		for(int i=0;i<4;i++)
+		{
+			if(suits[i]==3)
+			{
+				color=i;
+			}
+			else if(suits[i]==2)
+			{
+				wrongColor=i;
+				wrongColor2=i;
+			}
+			else if(suits[i]==1&&wrongColor!=-1)
+			{
+				wrongColor2=i;
+			}
+			else if(suits[i]==1&&wrongColor==-1)
+			{
+				wrongColor=i;
+			}
+		}
+		
+		if(color==-1||wrongColor2==-1)
+			return null;
+		
+		int[]  wrongIndex=new int[] {-1,-1};
+		if(wrongColor!=wrongColor2)
+		{
+			for(int i=0;i<5;i++)
+			{
+				if(getSuit(aipCards[i])==(wrongColor+1))
+				{
+					wrongIndex[0]=i;
+				}
+				if(getSuit(aipCards[i])==(wrongColor2+1))
+				{	
+					wrongIndex[1]=i;
+				}
+			}
+		}
+		else
+		{
+			
+			for(int i=0;i<5;i++)
+			{
+				if(wrongIndex[0]==-1&&getSuit(aipCards[i])==(wrongColor+1))
+				{
+					wrongIndex[0]=i;
+				}
+				if(wrongIndex[0]!=-1&&getSuit(aipCards[i])==(wrongColor+1))
+				{
+					wrongIndex[1]=i;
+				}
+			}
+		}
+		return wrongIndex;
+	}
 	private int getIndexFromNumToCard(int num)
 	{
 		for(int i=0;i<5;i++)
@@ -454,6 +483,30 @@ public class App {
 			}
 		}
 		return -1;
+	}
+	private int[] getSuitAry()
+	{
+		int[] suits=new int [4];
+		for(int i=0;i<5;i++)
+		{
+			if(getSuit(aipCards[i])==1)
+			{
+				suits[0]++;
+			}
+			else if(getSuit(aipCards[i])==2)
+			{
+				suits[1]++;
+			}
+			else if(getSuit(aipCards[i])==3)
+			{
+				suits[2]++;
+			}
+			else
+			{
+				suits[3]++;
+			}
+		}
+		return suits;	
 	}
 	private void sortAIPCards()
 	{
