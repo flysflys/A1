@@ -121,6 +121,13 @@ public class App {
 			redraw(temp);
 			printAIPCards();			
 		}
+		else if(cardsFromS8()!=null)
+		{
+			System.out.println("3 cards are in sequence");
+			int[] temp= cardsFromS8();
+			redraw(temp);
+			printAIPCards();			
+		}
 		else
 			System.out.println("error");
 		
@@ -177,7 +184,7 @@ public class App {
 	{
 		for(int i =0;i<cards.length;i++)
 		{
-			System.out.println("discarding "+(i+1)+" card");
+			//System.out.println("discarding "+(i+1)+" card");
 			aipCards[cards[i]]=extraCards[i];
 			System.out.println("draw a "+extraCards[i]);
 		}
@@ -268,9 +275,9 @@ public class App {
 	}
 	private boolean wrongRankSF(int index)
 	{
-		int indexWrong=-1;
+		
 		int count=0;
-		boolean check=false;
+
 		for(int i=0;i<10;i++)
 		{
 			
@@ -357,6 +364,7 @@ public class App {
 	private int cardsFromFLUSH()
 	{
 		int[] suits=getSuitAry();
+
 		int color=-1;
 		int singleColor=-1;
 		for(int i=0;i<4;i++)
@@ -380,36 +388,47 @@ public class App {
 	{
 		int indexWrong=-1;
 		int count=0;
-		boolean check=false;
+		int check=-1;
 		for(int i=0;i<10;i++)
 		{			
-			if(aipCardsNum[i]==1)
+			if(aipCardsNum[i]==1||aipCardsNum[i]==2)
 			{
 				count=0;
-				for(int x=1;x<=4;x++)
+				for(int x=1;x<=3;x++)
 				{
-					if(aipCardsNum[i+x]==1)
+					if(aipCardsNum[i+x]==1||aipCardsNum[i+x]==2)
 					{
+						
 						count++;
 					}
 				}
-				if(check)
-				{
-					indexWrong=i;
-				}
 				if(count==3)
 				{
-					check=true;
-				}
-				
+					check=i;
+					break;
+				}				
 			}
 		}
-		if(!check)
+		if(check==-1)
 			return -1;
-		return getIndexFromNumToCard(indexWrong);
-		
-		
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(i<check||i>check+3)
+				{
+					indexWrong=i;
+					break;
+				}
+			}
+			if(aipCardsNum[i]==2)
+			{				
+				indexWrong=i;
+				break;				
+			}
+		}
 			
+		return getIndexFromNumToCard(indexWrong);							
 	}
 	private int[] cardsFromS7()
 	{
@@ -472,13 +491,114 @@ public class App {
 		}
 		return wrongIndex;
 	}
+	private int[] cardsFromS8()
+	{
+		int indexWrong=-1;
+		int indexWrong2=-1;
+		int count=0;
+		int check=-1;
+		for(int i=0;i<11;i++)
+		{			
+			if(aipCardsNum[i]==1||aipCardsNum[i]==2)
+			{
+				count=0;
+				for(int x=1;x<=2;x++)
+				{
+					if(aipCardsNum[i+x]==1||aipCardsNum[i+x]==2)
+					{						
+						count++;
+					}
+				}
+				if(count==2)
+				{
+					check=i;
+					break;
+				}				
+			}
+		}
+		if(check==-1)
+			return null;
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(i<check||i>check+3)
+				{
+					if(indexWrong==-1)
+						indexWrong=i;
+					else if(indexWrong!=-1)
+					{
+						indexWrong2=i;
+						break;
+					}
+				}
+			}
+			if(aipCardsNum[i]==2)
+			{				
+				if(i<check||i>check+3)
+				{					
+					indexWrong=i;
+					indexWrong2=i;
+					break;					
+				}
+				else
+				{
+					if(indexWrong==-1)
+						indexWrong=i;
+					else if(indexWrong!=-1)
+					{
+						indexWrong2=i;
+						break;
+					}
+				}
+			}
+		}
+		int[] result=new int[] {-1,-1};
+		if(indexWrong==indexWrong2)
+		{
+			for(int i=0;i<5;i++)
+			{
+				if(result[0]==-1)
+				{
+					if(indexWrong==12&&aipCards[i]%13==0)
+					{
+						result[0]=i;
+					}				
+					if(aipCards[i]%13==(indexWrong+1))
+					{
+						result[0]=i;
+					}
+				}
+				else
+				{
+					if(indexWrong==12&&aipCards[i]%13==0)
+					{
+						result[1]=i;
+					}				
+					if(aipCards[i]%13==(indexWrong+1))
+					{
+						result[1]=i;
+					}
+				}
+			}
+		}
+		else
+		{
+			result[0]=getIndexFromNumToCard(indexWrong);
+			result[1]=getIndexFromNumToCard(indexWrong2);
+		}
+		return result;
+	}
 	private int getIndexFromNumToCard(int num)
 	{
 		for(int i=0;i<5;i++)
 		{
+			if(num==12&&aipCards[i]%13==0)
+			{
+				return i;
+			}
 			if(aipCards[i]%13==(num+1))
 			{
-
 				return i;
 			}
 		}
