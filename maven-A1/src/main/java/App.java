@@ -105,6 +105,13 @@ public class App {
 			System.out.println("1 card away from FLUSH");
 			int[] temp= {cardsFromFLUSH()};
 			redraw(temp);
+			printAIPCards();			
+		}
+		else if(cardsFromSTRAIGHT()!=-1)
+		{
+			System.out.println("1 card away from STRAIGHT");
+			int[] temp= {cardsFromSTRAIGHT()};
+			redraw(temp);
 			printAIPCards();
 			
 		}
@@ -401,7 +408,41 @@ public class App {
 
 		return wrongSuitRF();
 	}
-	
+	private int cardsFromSTRAIGHT()
+	{
+		int indexWrong=-1;
+		int count=0;
+		boolean check=false;
+		for(int i=0;i<10;i++)
+		{			
+			if(aipCardsNum[i]==1)
+			{
+				count=0;
+				for(int x=1;x<=4;x++)
+				{
+					if(aipCardsNum[i+x]==1)
+					{
+						count++;
+					}
+				}
+				if(check)
+				{
+					indexWrong=i;
+				}
+				if(count==3)
+				{
+					check=true;
+				}
+				
+			}
+		}
+		if(!check)
+			return -1;
+		return getIndexFromNumToCard(indexWrong);
+		
+		
+			
+	}
 	private int getIndexFromNumToCard(int num)
 	{
 		for(int i=0;i<5;i++)
