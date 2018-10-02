@@ -116,15 +116,22 @@ public class App {
 		}
 		else if(cardsFromS7()!=null)
 		{
-			System.out.println("3 cards are in same suit");
+			System.out.println("3 cards are in same suit, exchange other 2");
 			int[] temp= cardsFromS7();
 			redraw(temp);
 			printAIPCards();			
 		}
 		else if(cardsFromS8()!=null)
 		{
-			System.out.println("3 cards are in sequence");
+			System.out.println("3 cards are in sequence, exchange other 2");
 			int[] temp= cardsFromS8();
+			redraw(temp);
+			printAIPCards();			
+		}
+		else if(cardsFromS9()!=null)
+		{
+			System.out.println("1 pair, exchange other 3");
+			int[] temp= cardsFromS9();
 			redraw(temp);
 			printAIPCards();			
 		}
@@ -182,6 +189,11 @@ public class App {
 	}
 	private void redraw(int [] cards)
 	{
+		for(int i =0;i<cards.length;i++)
+		{
+			System.out.println("discarding "+(cards[i]+1)+" card");
+			
+		}
 		for(int i =0;i<cards.length;i++)
 		{
 			//System.out.println("discarding "+(i+1)+" card");
@@ -430,7 +442,7 @@ public class App {
 			
 		return getIndexFromNumToCard(indexWrong);							
 	}
-	private int[] cardsFromS7()
+ 	private int[] cardsFromS7()
 	{
 		int[] suits=getSuitAry();
 		int color=-1;
@@ -588,6 +600,33 @@ public class App {
 			result[1]=getIndexFromNumToCard(indexWrong2);
 		}
 		return result;
+	}
+	private int[] cardsFromS9()
+	{
+		boolean check=false;
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==2)
+			{
+				check=true;
+				break;
+			}
+		}
+		if(!check)
+			return null;
+		int[] result=new int[3];
+		int c=0;
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				result[c]=getIndexFromNumToCard(i);
+				c++;
+			}
+			if(c==3)
+				return result;
+		}
+		return null;
 	}
 	private int getIndexFromNumToCard(int num)
 	{
