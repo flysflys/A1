@@ -92,6 +92,22 @@ public class App {
 			printAIPCards();
 			
 		}
+		else if(cardsFromFH()!=-1)
+		{
+			System.out.println("1 card away from FH");
+			int[] temp= {cardsFromFH()};
+			redraw(temp);
+			printAIPCards();
+			
+		}
+		else if(cardsFromFLUSH()!=-1)
+		{
+			System.out.println("1 card away from FLUSH");
+			int[] temp= {cardsFromFLUSH()};
+			redraw(temp);
+			printAIPCards();
+			
+		}
 		else
 			System.out.println("error");
 		
@@ -290,7 +306,7 @@ public class App {
 		if(numOfSuit()==2)
 		{		
 			int wrongSuit=wrongSuitRF();
-			System.out.println("wrongSuit= "+wrongSuit);
+			
 			if(wrongSuit==-1)
 				return -1;
 			boolean wrongRank=wrongRankSF(wrongSuit);
@@ -305,6 +321,98 @@ public class App {
 		else
 			return -1;
 		
+	}
+	private int cardsFromFH()
+	{
+		int singleIndex=-1;
+		boolean check=false,twoCheck=false;
+		
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(singleIndex==-1)
+				{
+					singleIndex=i;
+				}
+			}
+			if(!twoCheck&&aipCardsNum[i]==2)
+			{
+
+				twoCheck=true;
+				continue;
+			}
+			if(twoCheck&&aipCardsNum[i]==2)
+			{
+
+				check=true;
+			}
+			if(aipCardsNum[i]==3)
+			{
+
+				check=true;
+			}			
+		}
+		if(!check)
+			return -1;
+		
+		return getIndexFromNumToCard(singleIndex);
+		
+	}
+	
+	private int cardsFromFLUSH()
+	{
+		int[] suits=new int [4];
+		for(int i=0;i<5;i++)
+		{
+			if(getSuit(aipCards[i])==1)
+			{
+				suits[0]++;
+			}
+			else if(getSuit(aipCards[i])==2)
+			{
+				suits[1]++;
+			}
+			else if(getSuit(aipCards[i])==3)
+			{
+				suits[2]++;
+			}
+			else
+			{
+				suits[3]++;
+			}
+		}
+		int color=-1;
+		int singleColor=-1;
+		for(int i=0;i<4;i++)
+		{
+			if(suits[i]>=4)
+			{
+				color=i;
+			}
+			if(suits[i]==1)
+			{
+				singleColor=i;
+			}
+		}
+		
+		if(color==-1||singleColor==-1)
+			return -1;
+
+		return wrongSuitRF();
+	}
+	
+	private int getIndexFromNumToCard(int num)
+	{
+		for(int i=0;i<5;i++)
+		{
+			if(aipCards[i]%13==(num+1))
+			{
+
+				return i;
+			}
+		}
+		return -1;
 	}
 	private void sortAIPCards()
 	{
