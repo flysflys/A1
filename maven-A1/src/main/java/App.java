@@ -115,6 +115,20 @@ public class App {
 				System.out.println("Tie!");
 			return result;
 		}
+		if(aipC==Hands.FLUSH)
+		{
+			System.out.println("both have a FLUSH, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);			
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+			{
+				System.out.println("both have same highest card, comparing the Suit");
+				result=compareResult(getSuit(aipCards[0]),getSuit(opCards[0]));
+			}
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
 		if(aipC==Hands.TOAK)
 		{
 			System.out.println("both have a three of a kind, comparing the highest Card");
