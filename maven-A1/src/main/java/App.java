@@ -158,7 +158,7 @@ public class App {
 		}
 		if(aipC==Hands.TP)
 		{
-			System.out.println("both have a two pair, comparing the highest Card");
+			System.out.println("both have a two pairs, comparing the highest Card");
 			int aipHighC=isTP(aipCardsNum),opHighC=isTP(opCardsNum);
 			result=compareResult(aipHighC,opHighC);
 			if(result==Winner.TIE)
@@ -185,6 +185,36 @@ public class App {
 				System.out.println("Tie!");
 			return result;
 		}
+		if(aipC==Hands.PAIR)
+		{
+			System.out.println("both have a pair, comparing the highest Card");
+			int aipHighC=isPair(aipCardsNum),opHighC=isPair(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+			{
+				System.out.println("both have same highest cards, comparing the suit");
+				int suit=0,suit2=0;
+				for(int i=0;i<5;i++)
+				{
+					if(aipCards[i]%13==aipHighC)
+					{
+						suit=getSuit(aipCards[i]);
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(opCards[i]%13==opHighC)
+					{
+						suit2=getSuit(opCards[i]);
+					}
+				}
+				result=compareResult(suit,suit2);
+			}
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
+		
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
@@ -912,7 +942,10 @@ public class App {
 	}
 	private int isPair(int[] cards)
 	{
-
+		if(cards[0]==2)
+		{
+			return 14;
+		}
 		for(int i=0; i<13;i++)
 		{
 			if(cards[i]==2)
