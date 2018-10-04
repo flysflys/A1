@@ -59,7 +59,7 @@ public class App {
 	public Winner winner()
 	{
 		Hands aipC=getHands(), opC=getOpHands();
-		int result=0;
+		Winner result;
 		System.out.println("AIP has a "+aipC.toString()+", OPPONENT has a " +opC.toString() );
 		if(aipC.compareTo(opC)<0)
 		{
@@ -75,52 +75,52 @@ public class App {
 		if(aipC==Hands.RF)
 		{
 			System.out.println("both have RF, comparing the Suit");
-			if(getSuit(aipCards[0])>getSuit(opCards[0]))
-			{
-				System.out.println("AIP wins!");
-				return Winner.AIP;
-			}
-			if(getSuit(aipCards[0])<getSuit(opCards[0]))
-			{
-				System.out.println("opponent wins!");
-				return Winner.OPPONENT;
-			}
-			System.out.println("ERROR");
-			return Winner.TIE;
+			result=compareResult(getSuit(aipCards[0]),getSuit(opCards[0]));
+			if(result==Winner.TIE)				
+				System.out.println("ERROR");
+			return result;
 		}
 		
 		if(aipC==Hands.SF)
 		{
 			System.out.println("both have SF, comparing the highest Card");
 			int aipHighC=isStraight(aipCardsNum),opHighC=isStraight(opCardsNum);
-
-			if(aipHighC>opHighC)
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
 			{
-				System.out.println("AIP wins!");
-				return Winner.AIP;
+				System.out.println("both have same highest card, comparing the Suit");
+				result=compareResult(getSuit(aipCards[0]),getSuit(opCards[0]));
 			}
-			if(aipHighC<opHighC)
-			{
-				System.out.println("opponent wins!");
-				return Winner.OPPONENT;
-			}
-			System.out.println("both have same highest card, comparing the Suit");
-			if(getSuit(aipCards[0])>getSuit(opCards[0]))
-			{
-				System.out.println("AIP wins!");
-				return Winner.AIP;
-			}
-			if(getSuit(aipCards[0])<getSuit(opCards[0]))
-			{
-				System.out.println("opponent wins!");
-				return Winner.OPPONENT;
-			}
-			System.out.println("ERROR");
-			return Winner.TIE;
+			if(result==Winner.TIE)
+				System.out.println("ERROR");
+			return result;
 
 		}
-		
+		if(aipC==Hands.FOAK)
+		{
+			System.out.println("both have a quadruplet, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+			
+		}
 		System.out.println("it is a tie!");
+		return Winner.TIE;
+	}
+	private Winner compareResult(int aip,int op)
+	{
+		if(aip>op)
+		{
+			System.out.println("AIP wins!");
+			return Winner.AIP;
+		}
+		if(aip<op)
+		{
+			System.out.println("opponent wins!");
+			return Winner.OPPONENT;
+		}
 		return Winner.TIE;
 	}
 	public int[] getOpCards()
@@ -1223,5 +1223,15 @@ public class App {
 		}
 		return tempAry;
 	}
-	
+	private int getHigh(int[] cards)
+	{
+		if(cards[0]!=0)
+			return 14;
+		for(int i=12;i>0;i--)
+		{
+			if(cards[i]!=0)
+				return i+1;
+		}
+		return -1;
+	}
 }
