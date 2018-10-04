@@ -22,17 +22,20 @@ public class App {
 			str = br.readLine();
 
 			tempAry=str.split("\\s+");
-
+			System.out.print("AIP has ");
 			for(int i =0;i<5;i++)
 			{
+				System.out.print(tempAry[i]+ " ");
 				tempAry1[i]=tempAry[i];
 			}
-
+			System.out.println();
+			System.out.print("OP has ");
 			for(int i =0;i<5;i++)
 			{
+				System.out.print(tempAry[i+5]+ " ");
 				tempAry2[i]=tempAry[i+5];
 			}
-
+			System.out.println();
 			if(tempAry.length>10)
 			{
 				tempAry3=new String[tempAry.length-10];
