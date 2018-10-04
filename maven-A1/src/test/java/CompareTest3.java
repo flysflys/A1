@@ -7,7 +7,7 @@ public class CompareTest3 {
 	@Test
 	public void test() {
 		App test = new App();
-		assertEquals(Winner.AIP,test.winner());
+		assertEquals(Winner.OPPONENT,test.winner());
 	}
 
 }
