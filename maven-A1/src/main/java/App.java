@@ -50,12 +50,23 @@ public class App {
 			System.out.print("ERROR!");
 		}
 		opCards=convertStringToInt(tempAry2);
+		opCardsNum=countNum(opCards);
 		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 
 	}
-	
+	public Winner winner()
+	{
+		Hands aipC=getHands(), opC=getOpHands();
+		int result=0;
+		System.out.println("AIP has a "+aipC.toString()+", OPPONENT has a " +opC.toString() );
+		if(aipC.compareTo(opC)<0)
+			return Winner.AIP;
+		if(aipC.compareTo(opC)>0)
+			return Winner.OPPONENT;
+		return Winner.TIE;
+	}
 	public int[] getOpCards()
 	{
 		
@@ -187,6 +198,53 @@ public class App {
 			return Hands.TP;
 		}
 		else if(isPair(aipCardsNum)!=-1)
+		{
+			return Hands.PAIR;
+		}
+		return Hands.NONE;
+	}
+	public Hands getOpHands()
+	{
+		if(isSameSuit(opCards)!=-1)
+		{
+			
+			if(isRFlush(opCardsNum)==1)
+			{
+				
+				return Hands.RF;
+			}
+			else if(isStraight(opCardsNum)!=-1)
+			{
+				return Hands.SF;
+			}			
+		}
+		if(isFH(opCardsNum)!=-1)
+		{
+			return Hands.FH;
+		}
+		else if(isFOAK(opCardsNum)!=-1)
+		{
+			return Hands.FOAK;
+		}
+	
+		else if(isSameSuit(opCards)!=-1)
+		{
+
+			return Hands.FLUSH;
+		}
+		else if(isStraight(opCardsNum)!=-1)
+		{
+			return Hands.STRAIGHT;
+		}
+		else if(isTOAK(opCardsNum)!=-1)
+		{
+			return Hands.TOAK;
+		}
+		else if(isTP(opCardsNum)!=-1)
+		{
+			return Hands.TP;
+		}
+		else if(isPair(opCardsNum)!=-1)
 		{
 			return Hands.PAIR;
 		}
@@ -656,7 +714,6 @@ public class App {
 		return null;
 	}
 		
-	
 	private int getIndexFromNumToCard(int num)
 	{
 		for(int i=0;i<5;i++)
