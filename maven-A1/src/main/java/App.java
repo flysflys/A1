@@ -71,6 +71,22 @@ public class App {
 			System.out.println("opponent wins!");
 			return Winner.OPPONENT;
 		}
+		if(aipC==Hands.RF)
+		{
+			System.out.println("both have RF, comparing the Suit");
+			if(getSuit(aipCards[0])>getSuit(opCards[0]))
+			{
+				System.out.println("AIP wins!");
+				return Winner.AIP;
+			}
+			if(getSuit(aipCards[0])<getSuit(opCards[0]))
+			{
+				System.out.println("opponent wins!");
+				return Winner.OPPONENT;
+			}
+			System.out.println("ERROR");
+			return Winner.TIE;
+		}
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
