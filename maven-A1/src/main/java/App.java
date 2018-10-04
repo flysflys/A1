@@ -106,6 +106,24 @@ public class App {
 			return result;
 			
 		}
+		if(aipC==Hands.FH)
+		{
+			System.out.println("both have a FH, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
+		if(aipC==Hands.TOAK)
+		{
+			System.out.println("both have a three of a kind, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
