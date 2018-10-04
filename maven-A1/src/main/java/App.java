@@ -101,8 +101,8 @@ public class App {
 		}
 		if(aipC==Hands.FOAK)
 		{
-			System.out.println("both have a quadruplet, comparing the highest Card");
-			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			System.out.println("both have a four of a kind, comparing the highest Card");
+			int aipHighC=isFOAK(aipCardsNum),opHighC=isFOAK(opCardsNum);
 			result=compareResult(aipHighC,opHighC);
 			if(result==Winner.TIE)
 				System.out.println("Tie!");
@@ -112,7 +112,7 @@ public class App {
 		if(aipC==Hands.FH)
 		{
 			System.out.println("both have a FH, comparing the highest Card");
-			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			int aipHighC=isFH(aipCardsNum),opHighC=isFH(opCardsNum);
 			result=compareResult(aipHighC,opHighC);
 			if(result==Winner.TIE)
 				System.out.println("Tie!");
@@ -150,12 +150,13 @@ public class App {
 		if(aipC==Hands.TOAK)
 		{
 			System.out.println("both have a three of a kind, comparing the highest Card");
-			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			int aipHighC=isTOAK(aipCardsNum),opHighC=isTOAK(opCardsNum);
 			result=compareResult(aipHighC,opHighC);
 			if(result==Winner.TIE)
 				System.out.println("Tie!");
 			return result;
 		}
+		
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
@@ -932,13 +933,18 @@ public class App {
 				havePair=true;
 		}
 		if(havePair)
+		{
+			if(cards[0]==3)
+				return 14;
 			return temp;
+		}
 		else
 			return -1;
 	}
 	private int isFOAK(int[] cards)
 	{
-		
+		if(cards[0]==4)
+			return 14;
 		for(int i=0; i<13;i++)
 		{
 			if(cards[i]==4)
@@ -949,12 +955,13 @@ public class App {
 	private int isTOAK(int[] cards)
 	{
 		int temp=-1;
-		
+		if(cards[0]==3)
+			return 14;
 		for(int i=0; i<13;i++)
 		{
 			if(cards[i]==3)
 			{
-				temp=i+1;
+				return i+1;
 			}
 		}
 		
