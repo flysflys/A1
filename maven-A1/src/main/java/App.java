@@ -214,8 +214,22 @@ public class App {
 				System.out.println("Tie!");
 			return result;
 		}
+		if(aipC==Hands.NONE)
+		{
+			System.out.println("both have no hands, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+			{
+				System.out.println("both have same highest cards, comparing the suit");
+				result=compareResult(aipCards[4],opCards[4]);
+			}
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
 		
-		System.out.println("it is a tie!");
+		System.out.println("error");
 		return Winner.TIE;
 	}
 	private Winner compareResult(int aip,int op)
