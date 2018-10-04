@@ -156,7 +156,35 @@ public class App {
 				System.out.println("Tie!");
 			return result;
 		}
-		
+		if(aipC==Hands.TP)
+		{
+			System.out.println("both have a two pair, comparing the highest Card");
+			int aipHighC=isTP(aipCardsNum),opHighC=isTP(opCardsNum);
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+			{
+				System.out.println("both have same highest cards, comparing the suit");
+				int suit=0,suit2=0;
+				for(int i=0;i<5;i++)
+				{
+					if(aipCards[i]%13==aipHighC)
+					{
+						suit=getSuit(aipCards[i]);
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(opCards[i]%13==opHighC)
+					{
+						suit2=getSuit(opCards[i]);
+					}
+				}
+				result=compareResult(suit,suit2);
+			}
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
@@ -917,7 +945,10 @@ public class App {
 		}
 		if(temp2==-1)
 			return -1;
-		return temp2;
+		if(temp2>temp)
+			return temp2;
+		else
+			return temp;
 		
 	}
 	private int isFH(int[] cards)
