@@ -62,9 +62,16 @@ public class App {
 		int result=0;
 		System.out.println("AIP has a "+aipC.toString()+", OPPONENT has a " +opC.toString() );
 		if(aipC.compareTo(opC)<0)
+		{
+			System.out.println("AIP wins!");
 			return Winner.AIP;
+		}
 		if(aipC.compareTo(opC)>0)
+		{
+			System.out.println("opponent wins!");
 			return Winner.OPPONENT;
+		}
+		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
 	public int[] getOpCards()
