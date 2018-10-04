@@ -132,6 +132,21 @@ public class App {
 				System.out.println("Tie!");
 			return result;
 		}
+		if(aipC==Hands.STRAIGHT)
+		{
+			System.out.println("both have a STRAIGHT, comparing the highest Card");
+			int aipHighC=getHigh(aipCardsNum),opHighC=getHigh(opCardsNum);			
+			result=compareResult(aipHighC,opHighC);
+			if(result==Winner.TIE)
+			{
+				System.out.println("both have same highest card, comparing the Suit of highest card");
+				result=compareResult(getSuit(aipCards[getHighCardIndex(aipHighC)])
+						,getSuit(opCards[getHighCardIndex(opHighC)]));
+			}
+			if(result==Winner.TIE)
+				System.out.println("Tie!");
+			return result;
+		}
 		if(aipC==Hands.TOAK)
 		{
 			System.out.println("both have a three of a kind, comparing the highest Card");
@@ -1266,6 +1281,23 @@ public class App {
 		{
 			if(cards[i]!=0)
 				return i+1;
+		}
+		return -1;
+	}
+	private int getHighCardIndex(int num)
+	{
+		for(int i=0;i<5;i++)
+		{
+			if(num==14&&aipCards[i]%13==1)
+				return i;
+			if(num==13&&aipCards[i]%13==0)
+			{
+				return i;
+			}
+			if(aipCards[i]%13==(num))
+			{
+				return i;
+			}
 		}
 		return -1;
 	}
