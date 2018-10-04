@@ -87,6 +87,26 @@ public class App {
 			System.out.println("ERROR");
 			return Winner.TIE;
 		}
+		
+		if(aipC==Hands.SF)
+		{
+			System.out.println("both have SF, comparing the highest Card");
+			int aipHighC=isStraight(aipCardsNum),opHighC=isStraight(opCardsNum);
+
+			if(aipHighC>opHighC)
+			{
+				System.out.println("AIP wins!");
+				return Winner.AIP;
+			}
+			if(aipHighC<opHighC)
+			{
+				System.out.println("opponent wins!");
+				return Winner.OPPONENT;
+			}
+			System.out.println("ERROR");
+			return Winner.TIE;
+		}
+		
 		System.out.println("it is a tie!");
 		return Winner.TIE;
 	}
@@ -894,7 +914,7 @@ public class App {
 		{
 			if(cards[9]==1&&cards[10]==1&&cards[11]==1&&cards[12]==1)
 			{
-				return 1;
+				return 14;
 			}
 		}
 		return -1;
