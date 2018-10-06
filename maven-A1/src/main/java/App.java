@@ -1280,7 +1280,7 @@ public class App {
 		{
 			switch(strAry[i])
 			{
-				case "C1":
+				case "CA":
 					tempAry[i]=1;
 				break;
 				case "C2":
@@ -1319,7 +1319,7 @@ public class App {
 				case "CK":
 					tempAry[i]=13;
 				break;
-				case "D1":
+				case "DA":
 					tempAry[i]=14;
 				break;
 				case "D2":
@@ -1358,7 +1358,7 @@ public class App {
 				case "DK":
 					tempAry[i]=26;
 				break;
-				case "H1":
+				case "HA":
 					tempAry[i]=27;
 				break;
 				case "H2":
@@ -1398,7 +1398,7 @@ public class App {
 					tempAry[i]=39;
 				break;
 				
-				case "S1":
+				case "SA":
 					tempAry[i]=40;
 				break;
 				case "S2":
