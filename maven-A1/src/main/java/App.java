@@ -282,6 +282,14 @@ public class App {
 			printAIPCards();
 			
 		}
+		else if(cardsFromFOAK()!=-1)
+		{
+			System.out.println("1 card away from FOAK");
+			int[] temp= {cardsFromFOAK()};
+			redraw(temp);
+			printAIPCards();
+			
+		}
 		else if(cardsFromFH()!=-1)
 		{
 			System.out.println("1 card away from FH");
@@ -576,6 +584,32 @@ public class App {
 		}
 		else
 			return -1;
+		
+	}
+	private int cardsFromFOAK()
+	{
+		int singleIndex=-1;
+		boolean check=false;
+		
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(singleIndex==-1)
+				{
+					singleIndex=i;
+				}
+			}
+			if(aipCardsNum[i]==3)
+			{
+
+				check=true;
+			}			
+		}
+		if(!check)
+			return -1;
+		
+		return getIndexFromNumToCard(singleIndex);
 		
 	}
 	private int cardsFromFH()
