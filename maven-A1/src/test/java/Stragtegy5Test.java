@@ -7,7 +7,7 @@ public class Stragtegy5Test {
 	@Test
 	public void test() {
 		App test = new App();
-
+		test.input("H7 D7 H1 H6 H2 H9");
 		test.exchange();
 		assertEquals(Hands.FLUSH,test.getHands());
 	}

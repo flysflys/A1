@@ -67,18 +67,34 @@ public class App {
 	{
 		String[] tempAry=null;
 		String[] tempAry1=new String[5];
+		String[] tempAry3=null;
 		tempAry=str.split("\\s+");
 		System.out.print("AIP has ");
+		
 		for(int i =0;i<5;i++)
 		{
 			System.out.print(tempAry[i]+ " ");
 			tempAry1[i]=tempAry[i];
 		}
 		System.out.println();
+		System.out.print("extra cards are ");
+		if(tempAry.length>5)
+		{
+			tempAry3=new String[tempAry.length-5];
+			for(int i =0;i<tempAry3.length;i++)
+			{
+				tempAry3[i]=tempAry[i+5];
+				System.out.print(tempAry3[i]+ " ");
+			}
+			extraCards=convertStringToInt(tempAry3);
+		}
+		System.out.println();
+		
 		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 	}
+	
 	public Winner winner()
 	{
 		Hands aipC=getHands(), opC=getOpHands();
@@ -697,12 +713,12 @@ public class App {
 		int indexWrong=-1;
 		int count=0;
 		int check=-1;
-		for(int i=0;i<10;i++)
+		for(int i=0;i<9;i++)
 		{			
 			if(aipCardsNum[i]==1||aipCardsNum[i]==2)
 			{
 				count=0;
-				for(int x=1;x<=3;x++)
+				for(int x=1;x<=4;x++)
 				{
 					if(aipCardsNum[i+x]==1||aipCardsNum[i+x]==2)
 					{
@@ -710,11 +726,28 @@ public class App {
 						count++;
 					}
 				}
-				if(count==3)
+				System.out.println(i+" "+count);
+				if(count==3) 
 				{
+					
 					check=i;
 					break;
 				}				
+			}
+		}
+		if(check==-1)
+		{
+			count=0;
+			for(int i=9;i<13;i++)
+			{
+				if(aipCardsNum[i]==1||aipCardsNum[i]==2)
+				{
+					count++;
+				}
+			}
+			if(count==4)
+			{
+				check=9;
 			}
 		}
 		if(check==-1)
