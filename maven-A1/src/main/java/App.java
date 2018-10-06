@@ -6,57 +6,71 @@ public class App {
 	int[] aipCards=new int[] {0,0,0,0,0};
 	int[] aipCardsNum=new int[13];
 	int[] extraCards=null;
+	String[] games=null;
+	int gameCount=0;
 	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
 	{		
-		
-
 	}
 	public void readFile()
 	{
-		String[] tempAry=null;
-		String[] tempAry1=new String[5];
-		String[] tempAry2=new String[5];
-		String[] tempAry3=null;
 		File file = new File(path);  
-			  
+		
 		String str; 
 		try
 		{
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			int lines = 0;
+			while (reader.readLine() != null) lines++;
+			reader.close();
+			System.out.println("file contain "+lines+" games");
 			BufferedReader br = new BufferedReader(new FileReader(file)); 
 			str = br.readLine();
-
-			tempAry=str.split("\\s+");
-			System.out.print("AIP has ");
-			for(int i =0;i<5;i++)
+			games=new String[lines];
+			int j=0;
+			while(str!=null)
 			{
-				System.out.print(tempAry[i]+ " ");
-				tempAry1[i]=tempAry[i];
+				games[j]=str;
+				str = br.readLine();
 			}
-			System.out.println();
-			System.out.print("OP has ");
-			for(int i =0;i<5;i++)
-			{
-				System.out.print(tempAry[i+5]+ " ");
-				tempAry2[i]=tempAry[i+5];
-			}
-			System.out.println();
-			if(tempAry.length>10)
-			{
-				tempAry3=new String[tempAry.length-10];
-				for(int i =0;i<tempAry3.length;i++)
-				{
-					tempAry3[i]=tempAry[i+10];
-				}
-				extraCards=convertStringToInt(tempAry3);
-			}
-
 			br.close();
 		}
 		catch (Exception e)
 		{
 			System.out.print("ERROR!");
 		}
+	}
+	public void newGame()
+	{
+		String[] tempAry=games[gameCount].split("\\s+");
+		String[] tempAry1=new String[5];
+		String[] tempAry2=new String[5];
+		String[] tempAry3=null;
+		System.out.print("AIP has ");
+		for(int i =0;i<5;i++)
+		{
+			System.out.print(tempAry[i]+ " ");
+			tempAry1[i]=tempAry[i];
+		}
+		System.out.println();
+		System.out.print("OP has ");
+		for(int i =0;i<5;i++)
+		{
+			System.out.print(tempAry[i+5]+ " ");
+			tempAry2[i]=tempAry[i+5];
+		}
+		System.out.println();
+		if(tempAry.length>10)
+		{
+			tempAry3=new String[tempAry.length-10];
+			for(int i =0;i<tempAry3.length;i++)
+			{
+				tempAry3[i]=tempAry[i+10];
+			}
+			extraCards=convertStringToInt(tempAry3);
+		}
+			
+	
 		opCards=convertStringToInt(tempAry2);
 		opCardsNum=countNum(opCards);
 		aipCards=convertStringToInt(tempAry1);
