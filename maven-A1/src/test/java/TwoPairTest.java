@@ -7,6 +7,7 @@ public class TwoPairTest {
 	@Test
 	public void test() {
 		App test = new App();
+		test.input("SQ CQ HK DJ DK");
 		assertEquals(Hands.TP,test.getHands());
 	}
 

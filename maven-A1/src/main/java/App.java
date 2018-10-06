@@ -9,6 +9,11 @@ public class App {
 	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
 	{		
+		
+
+	}
+	public void readFile()
+	{
 		String[] tempAry=null;
 		String[] tempAry1=new String[5];
 		String[] tempAry2=new String[5];
@@ -57,7 +62,22 @@ public class App {
 		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
-
+	}
+	public void input(String str)
+	{
+		String[] tempAry=null;
+		String[] tempAry1=new String[5];
+		tempAry=str.split("\\s+");
+		System.out.print("AIP has ");
+		for(int i =0;i<5;i++)
+		{
+			System.out.print(tempAry[i]+ " ");
+			tempAry1[i]=tempAry[i];
+		}
+		System.out.println();
+		aipCards=convertStringToInt(tempAry1);
+		aipCardsNum=countNum(aipCards);
+		sortAIPCards();
 	}
 	public Winner winner()
 	{
