@@ -8,7 +8,7 @@ public class App {
 	int[] extraCards=null;
 	String[] games=null;
 	int gameCount=0;
-	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
+	String path="C:\\Users\\michaelwang\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
 	{		
 	}
@@ -342,14 +342,14 @@ public class App {
 			printAIPCards();
 			
 		}
-		else if(cardsFromFH()!=-1)
+		/*else if(cardsFromFH()!=-1)
 		{
 			System.out.println("1 card away from FH");
 			int[] temp= {cardsFromFH()};
 			redraw(temp);
 			printAIPCards();
 			
-		}
+		}*/
 		else if(cardsFromFLUSH()!=-1)
 		{
 			System.out.println("1 card away from FLUSH");
@@ -371,10 +371,24 @@ public class App {
 			redraw(temp);
 			printAIPCards();			
 		}
+		else if(threeInSuits()!=null)
+		{
+			System.out.println("3 cards are in same rank, exchange other 2");
+			int[] temp= threeInSuits();
+			redraw(temp);
+			printAIPCards();			
+		}
 		else if(cardsFromS8()!=null)
 		{
 			System.out.println("3 cards are in sequence, exchange other 2");
 			int[] temp= cardsFromS8();
+			redraw(temp);
+			printAIPCards();			
+		}
+		else if(twoPair()!=-1)
+		{
+			System.out.println("2 pairs, exchange other card");
+			int[] temp= new int[] {twoPair()};
 			redraw(temp);
 			printAIPCards();			
 		}
@@ -664,6 +678,69 @@ public class App {
 		return getIndexFromNumToCard(singleIndex);
 		
 	}
+	private int[] threeInSuits()
+	{
+		int singleIndex=-1,singleIndex2=-1;
+		boolean check=false;
+		
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(singleIndex==-1)
+				{
+					singleIndex=i;
+				}
+				else
+					singleIndex2=i;
+			}
+			
+			if(aipCardsNum[i]==3)
+			{
+
+				check=true;
+			}			
+		}
+		if(!check)
+			return null;
+		
+		return new int[] {getIndexFromNumToCard(singleIndex),getIndexFromNumToCard(singleIndex2)};	
+	}
+	
+	private int twoPair()
+	{
+		int singleIndex=-1;
+		boolean check=false,twoCheck=false;
+		
+		for(int i=0;i<13;i++)
+		{
+			if(aipCardsNum[i]==1)
+			{
+				if(singleIndex==-1)
+				{
+					singleIndex=i;
+				}
+			}
+			if(!twoCheck&&aipCardsNum[i]==2)
+			{
+
+				twoCheck=true;
+				continue;
+			}
+			if(twoCheck&&aipCardsNum[i]==2)
+			{
+
+				check=true;
+			}
+					
+		}
+		if(!check)
+			return -1;
+		
+		return getIndexFromNumToCard(singleIndex);
+		
+	}
+	
 	private int cardsFromFH()
 	{
 		int singleIndex=-1;
