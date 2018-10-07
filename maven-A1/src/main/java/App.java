@@ -819,7 +819,7 @@ public class App {
 						count++;
 					}
 				}
-				System.out.println(i+" "+count);
+				
 				if(count==3) 
 				{
 					
