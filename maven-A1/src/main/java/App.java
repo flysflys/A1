@@ -32,6 +32,7 @@ public class App {
 			{
 				games[j]=str;
 				str = br.readLine();
+				j++;
 			}
 			br.close();
 		}
@@ -76,6 +77,7 @@ public class App {
 		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
+		gameCount++;
 	}
 	public void input(String str)
 	{
@@ -1203,11 +1205,11 @@ public class App {
 	}
 	private void printAIPCards()
 	{
-		System.out.println("AIP has "+aipCards[0]+" "+aipCards[1]+" "+aipCards[2]+" "+aipCards[3]+" "+aipCards[4]);
+		/*System.out.println("AIP has "+aipCards[0]+" "+aipCards[1]+" "+aipCards[2]+" "+aipCards[3]+" "+aipCards[4]);
 		System.out.println("1 2 3 4 5 6 7 8 9 0 J Q K");
 		for(int i=0;i<13;i++)
 			System.out.print(aipCardsNum[i]+" ");
-		System.out.println("");
+		System.out.println("");*/
 	}
 	private void printOPCards()
 	{
