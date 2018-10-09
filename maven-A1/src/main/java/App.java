@@ -8,7 +8,7 @@ public class App {
 	int[] extraCards=null;
 	String[] games=null;
 	int gameCount=0;
-	String path="C:\\Users\\michaelwang\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
+	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
 	public App()
 	{		
 	}
@@ -550,14 +550,14 @@ public class App {
 	{
 		for(int i =0;i<cards.length;i++)
 		{
-			System.out.println("discarding "+(cards[i]+1)+" card");
+			System.out.println("discarding "+getStringOfCard(aipCards[cards[i]])+" card");
 			
 		}
 		for(int i =0;i<cards.length;i++)
 		{
 			//System.out.println("discarding "+(i+1)+" card");
 			aipCards[cards[i]]=extraCards[i];
-			System.out.println("draw a "+extraCards[i]);
+			System.out.println("draw a "+getStringOfCard(extraCards[i]));
 		}
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
@@ -1580,6 +1580,40 @@ public class App {
 			}
 		}
 		return tempAry;
+	}
+	private String getStringOfCard(int card)
+	{
+		String result="";
+		if(getSuit(card)==1)
+		{
+			result="C";
+		}
+		if(getSuit(card)==2)
+		{
+			result="D";
+		}
+		if(getSuit(card)==3)
+		{
+			result="H";
+		}
+		if(getSuit(card)==4)
+		{
+			result="S";
+		}
+		if(card%13>=1&&card%13<=10)
+		{
+			result=result+(card%13);
+		}
+		else
+		{
+			if(card%13==11)
+				result=result+"J";
+			if(card%13==12)
+				result=result+"Q";
+			if(card%13==0)
+				result=result+"K";
+		}
+		return result;
 	}
 	private int getHigh(int[] cards)
 	{
