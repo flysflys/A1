@@ -284,7 +284,7 @@ public class App {
 		System.out.println("error");
 		return Winner.TIE;
 	}
-	private Winner compareResult(int aip,int op)
+	public Winner compareResult(int aip,int op)
 	{
 		if(aip>op)
 		{
