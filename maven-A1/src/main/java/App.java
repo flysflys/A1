@@ -110,6 +110,49 @@ public class App {
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 	}
+	public void inputOP(String str)
+	{
+		String[] tempAry=null;
+		String[] tempAry1=new String[5];
+		String[] tempAry2=new String[5];
+		String[] tempAry3=null;
+		tempAry=str.split("\\s+");
+		System.out.print("AIP has ");
+		
+		for(int i =0;i<5;i++)
+		{
+			System.out.print(tempAry[i]+ " ");
+			tempAry1[i]=tempAry[i];
+		}
+		System.out.println();
+		
+		System.out.print("OP has ");
+		for(int i =0;i<5;i++)
+		{
+			System.out.print(tempAry[i]+ " ");
+			tempAry2[i]=tempAry[i+5];
+		}
+		System.out.println();
+		
+		/*System.out.print("extra cards are ");
+		if(tempAry.length>5)
+		{
+			tempAry3=new String[tempAry.length-5];
+			for(int i =0;i<tempAry3.length;i++)
+			{
+				tempAry3[i]=tempAry[i+10];
+				System.out.print(tempAry3[i]+ " ");
+			}
+			extraCards=convertStringToInt(tempAry3);
+		}
+		System.out.println();
+		*/
+		aipCards=convertStringToInt(tempAry1);
+		aipCardsNum=countNum(aipCards);
+		opCards=convertStringToInt(tempAry2);
+		opCardsNum=countNum(opCards);
+		sortAIPCards();
+	}
 	
 	public Winner winner()
 	{
