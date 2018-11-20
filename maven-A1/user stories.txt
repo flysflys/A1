@@ -1,0 +1,54 @@
+As a user, i want the AI player to hold its cards when it has a straight or better so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a one card away from royal flush so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a one card away from straight flush so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a one card away from full house so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a one card away from flush so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a one card away from straight so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a 3 cards of same suit so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has a 3 cards in sequence so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has one pair so it can wins the oppent
+
+As a user, i want the AI player to exchange its cards when it has no hand so it can wins the oppent
+
+As a user, i want the player that has higher hands wins so the game is fair
+
+As a user, i want the player with better suit wins when they both have royal flushes so the game is fair
+
+As a user, i want the player with highest card wins when they both have straight flushes so the game is fair
+
+As a user, i want the player with better suit wins when they both have straight flushes with same highest card so the game is fair
+
+As a user, i want the player with highest cards of quadruplet wins when they both have 4 of a kind so the game is fair
+
+As a user, i want the player with highest cards of triplet wins when they both have 3 of a kind so the game is fair
+
+As a user, i want the player with highest cards of triplet wins when they both have full house so the game is fair
+
+As a user, i want the player with highest cards  wins when they both have flushes so the game is fair
+
+As a user, i want the player with better suit  wins when they both have flushes with 5cards of same rank so the game is fair
+
+As a user, i want the player with highest cards  wins when they both have straights so the game is fair
+
+As a user, i want the player with better suit  wins when they both have straights with same highest card so the game is fair
+
+As a user, i want the player with highest cards  wins when they both have two pairs so the game is fair
+
+As a user, i want the player with better suit  wins when they both have two pairs with same highest card so the game is fair
+
+As a user, i want the player with highest cards  wins when they both have pair so the game is fair
+
+As a user, i want the player with better suit  wins when they both have pair with same highest card so the game is fair
+
+As a user, i want the player with highest cards  wins when they both have no hands so the game is fair
+
+As a user, i want the player with better suit  wins when they both have no hands with same highest card so the game is fair
+

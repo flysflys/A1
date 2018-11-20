@@ -10,5 +10,6 @@ public class FOAKTest {
 		test.input("DJ D8 CJ HJ SJ ");
 		assertEquals(Hands.FOAK,test.getHands());
 	}
+	
 
 }

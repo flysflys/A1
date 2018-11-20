@@ -79,6 +79,10 @@ public class App {
 		sortAIPCards();
 		gameCount++;
 	}
+	public void aipHas()
+	{
+		System.out.println( "AI has a "+getHands().name());
+	}
 	public void input(String str)
 	{
 		String[] tempAry=null;
@@ -104,6 +108,8 @@ public class App {
 			}
 			extraCards=convertStringToInt(tempAry3);
 		}
+		else 
+			System.out.print("none");
 		System.out.println();
 		
 		aipCards=convertStringToInt(tempAry1);
@@ -129,15 +135,15 @@ public class App {
 		System.out.print("OP has ");
 		for(int i =0;i<5;i++)
 		{
-			System.out.print(tempAry[i]+ " ");
+			System.out.print(tempAry[i+5]+ " ");
 			tempAry2[i]=tempAry[i+5];
 		}
 		System.out.println();
 		
-		/*System.out.print("extra cards are ");
-		if(tempAry.length>5)
+		System.out.print("extra cards are ");
+		if(tempAry.length>10)
 		{
-			tempAry3=new String[tempAry.length-5];
+			tempAry3=new String[tempAry.length-10];
 			for(int i =0;i<tempAry3.length;i++)
 			{
 				tempAry3[i]=tempAry[i+10];
@@ -145,8 +151,10 @@ public class App {
 			}
 			extraCards=convertStringToInt(tempAry3);
 		}
+		else
+			System.out.print("none");
 		System.out.println();
-		*/
+		
 		aipCards=convertStringToInt(tempAry1);
 		aipCardsNum=countNum(aipCards);
 		opCards=convertStringToInt(tempAry2);
@@ -235,8 +243,10 @@ public class App {
 			if(result==Winner.TIE)
 			{
 				System.out.println("both have same highest card, comparing the Suit of highest card");
+				//System.out.println(getHighCardIndex(aipHighC)+"  "+getStringOfCard(opCards[getHighCardIndex(opHighC)]));
+				//System.out.println(getHighCardIndexOP(opHighC));				
 				result=compareResult(getSuit(aipCards[getHighCardIndex(aipHighC)])
-						,getSuit(opCards[getHighCardIndex(opHighC)]));
+						,getSuit(opCards[getHighCardIndexOP(opHighC)]));
 			}
 			if(result==Winner.TIE)
 				System.out.println("Tie!");
@@ -379,7 +389,7 @@ public class App {
 		}
 		else if(cardsFromFOAK()!=-1)
 		{
-			System.out.println("1 card away from FOAK");
+			System.out.println("1 card away from FH");
 			int[] temp= {cardsFromFOAK()};
 			redraw(temp);
 			printAIPCards();
@@ -1414,170 +1424,169 @@ public class App {
 		
 		for(int i =0;i<strAry.length;i++)
 		{
-			switch(strAry[i])
-			{
-				case "CA":
+			
+				if (strAry[i].compareTo( "CA")==0)
 					tempAry[i]=1;
-				break;
-				case "C2":
+				 
+				if (strAry[i].compareTo(  "C2")==0)
 					tempAry[i]=2;
-				break;
-				case "C3":
+				 
+				if (strAry[i].compareTo(  "C3")==0)
 					tempAry[i]=3;
-				break;
-				case "C4":
+				 
+				if (strAry[i].compareTo(  "C4")==0)
 					tempAry[i]=4;
-				break;
-				case "C5":
+				 
+				if (strAry[i].compareTo(  "C5")==0)
 					tempAry[i]=5;
-				break;
-				case "C6":
+				 
+				if (strAry[i].compareTo(  "C6")==0)
 					tempAry[i]=6;
-				break;
-				case "C7":
+				 
+				if (strAry[i].compareTo(  "C7")==0)
 					tempAry[i]=7;
-				break;
-				case "C8":
+				 
+				if (strAry[i].compareTo(  "C8")==0)
 					tempAry[i]=8;
-				break;
-				case "C9":
+				 
+				if (strAry[i].compareTo(  "C9")==0)
 					tempAry[i]=9;
-				break;
-				case "C10":
+				 
+				if (strAry[i].compareTo(  "C10")==0)
 					tempAry[i]=10;
-				break;
-				case "CJ":
+				 
+				if (strAry[i].compareTo(  "CJ")==0)
 					tempAry[i]=11;
-				break;
-				case "CQ":
+				 
+				if (strAry[i].compareTo(  "CQ")==0)
 					tempAry[i]=12;
-				break;
-				case "CK":
+				 
+				if (strAry[i].compareTo(  "CK")==0)
 					tempAry[i]=13;
-				break;
-				case "DA":
+				 
+				if (strAry[i].compareTo(  "DA")==0)
 					tempAry[i]=14;
-				break;
-				case "D2":
+				 
+				if (strAry[i].compareTo(  "D2")==0)
 					tempAry[i]=15;
-				break;
-				case "D3":
+				
+				if (strAry[i].compareTo(  "D3")==0)
 					tempAry[i]=16;
-				break;
-				case "D4":
+				 
+				if (strAry[i].compareTo(  "D4")==0)
 					tempAry[i]=17;
-				break;
-				case "D5":
+				 
+				if (strAry[i].compareTo(  "D5")==0)
 					tempAry[i]=18;
-				break;
-				case "D6":
+				 
+				if (strAry[i].compareTo(  "D6")==0)
 					tempAry[i]=19;
-				break;
-				case "D7":
+				 
+				if (strAry[i].compareTo(  "D7")==0)
 					tempAry[i]=20;
-				break;
-				case "D8":
+				 
+				if (strAry[i].compareTo(  "D8")==0)
 					tempAry[i]=21;
-				break;
-				case "D9":
+				 
+				if (strAry[i].compareTo(  "D9")==0)
 					tempAry[i]=22;
-				break;
-				case "D10":
+				 
+				if (strAry[i].compareTo(  "D10")==0)
 					tempAry[i]=23;
-				break;
-				case "DJ":
+				 
+				if (strAry[i].compareTo(  "DJ")==0)
 					tempAry[i]=24;
-				break;
-				case "DQ":
+				 
+				if (strAry[i].compareTo(  "DQ")==0)
 					tempAry[i]=25;
-				break;
-				case "DK":
+				 
+				if (strAry[i].compareTo(  "DK")==0)
 					tempAry[i]=26;
-				break;
-				case "HA":
+				 
+				if (strAry[i].compareTo(  "HA")==0)
 					tempAry[i]=27;
-				break;
-				case "H2":
+				 
+				if (strAry[i].compareTo(  "H2")==0)
 					tempAry[i]=28;
-				break;
-				case "H3":
+				 
+				if (strAry[i].compareTo(  "H3")==0)
 					tempAry[i]=29;
-				break;
-				case "H4":
+				 
+				if (strAry[i].compareTo(  "H4")==0)
 					tempAry[i]=30;
-				break;
-				case "H5":
+				 
+				if (strAry[i].compareTo(  "H5")==0)
 					tempAry[i]=31;
-				break;
-				case "H6":
+				 
+				if (strAry[i].compareTo(  "H6")==0)
 					tempAry[i]=32;
-				break;
-				case "H7":
+				 
+				if (strAry[i].compareTo(  "H7")==0)
 					tempAry[i]=33;
-				break;
-				case "H8":
+				 
+				if (strAry[i].compareTo(  "H8")==0)
 					tempAry[i]=34;
-				break;
-				case "H9":
+				 
+				if (strAry[i].compareTo(  "H9")==0)
 					tempAry[i]=35;
-				break;
-				case "H10":
+				 
+				if (strAry[i].compareTo(  "H10")==0)
 					tempAry[i]=36;
-				break;
-				case "HJ":
+				 
+				if (strAry[i].compareTo(  "HJ")==0)
 					tempAry[i]=37;
-				break;
-				case "HQ":
+				 
+				if (strAry[i].compareTo(  "HQ")==0)
 					tempAry[i]=38;
-				break;
-				case "HK":
+				 
+				if (strAry[i].compareTo(  "HK")==0)
 					tempAry[i]=39;
-				break;
+				 
 				
-				case "SA":
+				if (strAry[i].compareTo(  "SA")==0)
 					tempAry[i]=40;
-				break;
-				case "S2":
+				 
+				if (strAry[i].compareTo(  "S2")==0)
 					tempAry[i]=41;
-				break;
-				case "S3":
+				 
+				if (strAry[i].compareTo(  "S3")==0)
 					tempAry[i]=42;
-				break;
-				case "S4":
+				 
+				if (strAry[i].compareTo(  "S4")==0)
 					tempAry[i]=43;
-				break;
-				case "S5":
+				 
+				if (strAry[i].compareTo(  "S5")==0)
 					tempAry[i]=44;
-				break;
-				case "S6":
+				 
+				if (strAry[i].compareTo(  "S6")==0)
 					tempAry[i]=45;
-				break;
-				case "S7":
+				 
+				if (strAry[i].compareTo(  "S7")==0)
 					tempAry[i]=46;
-				break;
-				case "S8":
+				 
+				if (strAry[i].compareTo(  "S8")==0)
 					tempAry[i]=47;
-				break;
-				case "S9":
+				 
+				if (strAry[i].compareTo(  "S9")==0)
 					tempAry[i]=48;
-				break;
-				case "S10":
+				 
+				if (strAry[i].compareTo(  "S10")==0)
 					tempAry[i]=49;
-				break;
-				case "SJ":
+				 
+				if (strAry[i].compareTo(  "SJ")==0)
 					tempAry[i]=50;
-				break;
-				case "SQ":
+				 
+				if (strAry[i].compareTo(  "SQ")==0)
 					tempAry[i]=51;
-				break;
-				case "SK":
+				 
+				if (strAry[i].compareTo(  "SK")==0)
 					tempAry[i]=52;
-				break;
-				 default:
-					 tempAry[i]=0;
+				 
+				  
+					
 				
 				
-			}
+			
 		}
 		return tempAry;
 	}
@@ -1642,5 +1651,30 @@ public class App {
 			}
 		}
 		return -1;
+	}
+	private int getHighCardIndexOP(int num)
+	{
+		for(int i=0;i<5;i++)
+		{
+			if(num==14&&opCards[i]%13==1)
+				return i;
+			if(num==13&&opCards[i]%13==0)
+			{
+				return i;
+			}
+			if(opCards[i]%13==(num))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	private void printCards(int[] cards)
+	{
+		System.out.println(getStringOfCard(cards[0]));
+		System.out.println(getStringOfCard(cards[1]));
+		System.out.println(getStringOfCard(cards[2]));
+		System.out.println(getStringOfCard(cards[3]));
+		System.out.println(getStringOfCard(cards[4]));
 	}
 }

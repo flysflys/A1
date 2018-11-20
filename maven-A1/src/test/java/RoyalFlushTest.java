@@ -10,5 +10,11 @@ public class RoyalFlushTest {
 		test.input("SA S10 SQ SJ SK");
 		assertEquals(Hands.RF,test.getHands());
 	}
+	@Test
+	public void test2() {
+		App test = new App();
+		test.input("S10 SJ SQ SA SK");
+		assertEquals(Hands.RF,test.getHands());
+	}
 
 }
