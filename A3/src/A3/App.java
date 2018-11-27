@@ -1,7 +1,8 @@
-package mavenA3;
+package A3;
 import java.io.*;
 
 public class App {
+	Human human=new Human();
 	int[] opCards=new int[] {0,0,0,0,0};
 	int[] opCardsNum=new int[13];
 	int[] aipCards=new int[] {0,0,0,0,0};
@@ -9,9 +10,14 @@ public class App {
 	int[] extraCards=null;
 	String[] games=null;
 	int gameCount=0;
-	String path="C:\\Users\\michael\\eclipse-workspace\\maven-A1\\src\\main\\java\\input.txt";
+	int numberOfPlayers=0;
+	String path="C:\\Users\\michael\\eclipse-workspace\\A3\\src\\main\\java\\input.txt";
 	public App()
+	{				
+	}
+	public void setNumberOfPlayers(int i)
 	{		
+		numberOfPlayers=i;
 	}
 	public void readFile()
 	{
@@ -1678,8 +1684,8 @@ public class App {
 		System.out.println(getStringOfCard(cards[3]));
 		System.out.println(getStringOfCard(cards[4]));
 	}
-	public int PlayerNumber()
+	public int getPlayerNumber()
 	{
-		return 2;
+		return numberOfPlayers;
 	}
 }
