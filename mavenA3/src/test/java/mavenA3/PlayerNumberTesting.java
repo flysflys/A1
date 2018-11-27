@@ -39,7 +39,7 @@ public class PlayerNumberTesting {
         }
 		String tempStr=driver.findElement(By.id("numP")).getText();
 		String temp=tempStr.charAt(tempStr.length()-1)+"";
-		System.out.println("#="+temp);
+		//System.out.println("#="+temp);
 		assertEquals("3",temp);
 	}
 

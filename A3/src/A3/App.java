@@ -2,6 +2,9 @@ package A3;
 import java.io.*;
 
 public class App {
+	String[] p1Cards;
+	String[] p2Cards;
+	String[] p3Cards;
 	Human human=new Human();
 	int[] opCards=new int[] {0,0,0,0,0};
 	int[] opCardsNum=new int[13];
@@ -11,7 +14,7 @@ public class App {
 	String[] games=null;
 	int gameCount=0;
 	int numberOfPlayers=0;
-	String path="C:\\Users\\michael\\eclipse-workspace\\A3\\src\\main\\java\\input.txt";
+	String path="C:\\Users\\michael\\eclipse-workspace\\A3\\src\\A3\\input.txt";
 	public App()
 	{				
 	}
@@ -85,6 +88,74 @@ public class App {
 		aipCardsNum=countNum(aipCards);
 		sortAIPCards();
 		gameCount++;
+	}
+	public void threePlayersGame()
+	{
+		File file = new File(path);  
+		
+		String str; 
+		try
+		{
+					
+			BufferedReader br = new BufferedReader(new FileReader(file)); 
+			str = br.readLine();
+			
+			br.close();
+			//System.out.println("reading done!  "+str);
+			String[] tempAry=str.split("\\s+");
+			String[] tempAry1=new String[5];
+			String[] tempAry2=new String[5];
+			String[] tempAry3=new String[5];
+			String[] tempAry4=null;
+			for(int i =0;i<5;i++)
+			{				
+				tempAry1[i]=tempAry[i];
+			}
+
+			for(int i =0;i<5;i++)
+			{
+				tempAry2[i]=tempAry[i+5];
+			}
+			for(int i =0;i<5;i++)
+			{
+				tempAry3[i]=tempAry[i+10];
+			}
+
+			if(tempAry.length>15)
+			{
+				tempAry4=new String[tempAry.length-15];
+				for(int i =0;i<tempAry3.length;i++)
+				{
+					tempAry4[i]=tempAry[i+10];
+				}
+				extraCards=convertStringToInt(tempAry4);
+			}
+			p1Cards=tempAry1;
+			p2Cards=tempAry2;
+			p3Cards=tempAry3;
+			//human.giveCards(tempAry1);
+			/*opCards=convertStringToInt(tempAry2);
+			opCardsNum=countNum(opCards);
+			aipCards=convertStringToInt(tempAry1);
+			aipCardsNum=countNum(aipCards);
+			sortAIPCards();
+			gameCount++;*/
+
+		}
+		catch (Exception e)
+		{
+			System.out.print("ERROR!");
+		}
+	}
+	public String[] getPlayerHands(int p)
+	{
+		if(p==1)
+			return p1Cards;
+		if(p==2)
+			return p2Cards;
+		if(p==3)
+			return p3Cards;
+		return null;
 	}
 	public void aipHas()
 	{
@@ -468,6 +539,54 @@ public class App {
 		}
 		
 		
+	}
+	public Hands getHands(int[] pc)
+	{
+		int[] temp=countNum(pc);
+		if(isSameSuit(pc)!=-1)
+		{
+			
+			if(isRFlush(temp)==1)
+			{
+				
+				return Hands.RF;
+			}
+			else if(isStraight(temp)!=-1)
+			{
+				return Hands.SF;
+			}			
+		}
+		if(isFH(countNum(pc))!=-1)
+		{
+			return Hands.FH;
+		}
+		else if(isFOAK(temp)!=-1)
+		{
+			return Hands.FOAK;
+		}
+	
+		else if(isSameSuit(pc)!=-1)
+		{
+
+			return Hands.FLUSH;
+		}
+		else if(isStraight(temp)!=-1)
+		{
+			return Hands.STRAIGHT;
+		}
+		else if(isTOAK(temp)!=-1)
+		{
+			return Hands.TOAK;
+		}
+		else if(isTP(temp)!=-1)
+		{
+			return Hands.TP;
+		}
+		else if(isPair(temp)!=-1)
+		{
+			return Hands.PAIR;
+		}
+		return Hands.NONE;
 	}
 	public Hands getHands()
 	{
@@ -1425,7 +1544,7 @@ public class App {
 		}
 		return temp;
 	}
-	private int[] convertStringToInt(String[] strAry)
+	public int[] convertStringToInt(String[] strAry)
 	{
 		int[] tempAry = new int[strAry.length];
 		

@@ -60,10 +60,15 @@ public class IndexPage extends HttpServlet {
 			htmlEnd(out);
 			return;
 		}
+		if(numOfPlayers==3)
+		{
+			app.threePlayersGame();
+		}
 		app.setNumberOfPlayers(numOfPlayers);
 		htmlStart(out);
-		out.println("<h4 id=\"numP\">Players number: "+app.getPlayerNumber());
+		out.println("<h4 id=\"numP\">Players number: "+app.getPlayerNumber()+"</h4>");
 		
+		out.println("<h3 id=\"hand\">you have a "+app.getHands(app.convertStringToInt(app.getPlayerHands(1)))+"</h3>");
 		out.println("<h3>you have the cards below, click on the card you want to exchange and "
 				+ "submit button");
 		
@@ -75,13 +80,14 @@ public class IndexPage extends HttpServlet {
 		<input type="checkbox" name="card5" value="1" > S5<br>
 		<input type="submit" value="Submit">
 		</form>*/
-		
+
+		String[] temp=app.getPlayerHands(1);
 		out.println("<form action=\"Result\">");
-		out.println("<input type=\"checkbox\" name=\"card1\" value=\"1\"> S1<br>");
-		out.println("<input type=\"checkbox\" name=\"card2\" value=\"1\"> S2<br>");
-		out.println("<input type=\"checkbox\" name=\"card3\" value=\"1\" > S3<br>");
-		out.println("<input type=\"checkbox\" name=\"card4\" value=\"1\" > S4<br>");
-		out.println("<input type=\"checkbox\" name=\"card5\" value=\"1\" > S5<br>");
+		out.println("<input type=\"checkbox\" name=\"card1\" value=\"1\"> "+temp[0]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"card2\" value=\"1\"> "+temp[1]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"card3\" value=\"1\" >"+temp[2]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"card4\" value=\"1\" >"+temp[3]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"card5\" value=\"1\" >"+temp[4]+"<br>");
 		out.println("<input type=\"submit\" value=\"Submit\">");
 		out.println("</form>");
 		
