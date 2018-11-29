@@ -29,6 +29,7 @@ public class PlayerNumberTesting {
         {
         	Thread.sleep(500);
         	driver.findElement(By.id("numOfPlayers")).sendKeys("3");
+        	driver.findElement(By.id("numOfAI")).sendKeys("2");
         	Thread.sleep(1000);
         	driver.findElement(By.id("startButt")).click();
         	Thread.sleep(1000);
@@ -41,6 +42,7 @@ public class PlayerNumberTesting {
 		String temp=tempStr.charAt(tempStr.length()-1)+"";
 		//System.out.println("#="+temp);
 		assertEquals("3",temp);
+		assertEquals("2",temp2);
 	}
 
 }
