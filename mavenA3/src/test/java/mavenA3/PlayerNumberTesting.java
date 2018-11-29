@@ -50,6 +50,10 @@ public class PlayerNumberTesting {
 	
 	@Test
 	public void PlayersNumberTesting2() {
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
+		driver = new FirefoxDriver();
+        driver.get("http://localhost:8080/A3/Firstpage.html");
+        driver.manage().window().maximize();
 		try
         {
         	Thread.sleep(500);
@@ -74,6 +78,10 @@ public class PlayerNumberTesting {
 	}
 	@Test
 	public void PlayersNumberTesting3() {
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
+		driver = new FirefoxDriver();
+        driver.get("http://localhost:8080/A3/Firstpage.html");
+        driver.manage().window().maximize();
 		try
         {
         	Thread.sleep(500);
@@ -98,6 +106,10 @@ public class PlayerNumberTesting {
 	}
 	@Test
 	public void PlayersNumberTesting4() {
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
+		driver = new FirefoxDriver();
+        driver.get("http://localhost:8080/A3/Firstpage.html");
+        driver.manage().window().maximize();
 		try
         {
         	Thread.sleep(500);
@@ -109,7 +121,7 @@ public class PlayerNumberTesting {
         }
         catch(Exception e)
         {
-        	
+        	 
         }
 		String tempStr=driver.findElement(By.id("numP")).getText();
 		String temp=tempStr.charAt(tempStr.length()-1)+"";
