@@ -101,7 +101,7 @@ public class IndexPage extends HttpServlet {
 		else
 		{
 		out.println("<h3>player1 has the cards below, click on the card you want to exchange</h3>");
-		out.println("you already have a "+app.getPlayer(0).getHands()+"<br>");
+		out.println("<h4 id=\"p1Hand\">you already have a "+app.getPlayer(0).getHands()+"</h4><br>");
 		out.println("<input type=\"checkbox\" name=\"p1card1\" value=\"1\"> "+temp[0]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p1card2\" value=\"1\"> "+temp[1]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p1card3\" value=\"1\" >"+temp[2]+"<br>");
@@ -117,7 +117,7 @@ public class IndexPage extends HttpServlet {
 		else if(numOfAI!=3)
 		{
 		out.println("<h3>player2 has the cards below, click on the card you want to exchange</h3>");
-		out.println("you already have a "+app.getPlayer(1).getHands()+"<br>");
+		out.println("<h4 id=\"p2Hand\">you already have a "+app.getPlayer(1).getHands()+"</h4><br>");
 		out.println("<input type=\"checkbox\" name=\"p2card1\" value=\"1\"> "+temp2[0]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p2card2\" value=\"1\"> "+temp2[1]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p2card3\" value=\"1\" >"+temp2[2]+"<br>");
@@ -132,7 +132,7 @@ public class IndexPage extends HttpServlet {
 		if(numOfAI==0)
 		{
 		out.println("<h3>player3 has the cards below, click on the card you want to exchange</h3>");
-		out.println("you already have a "+app.getPlayer(2).getHands()+"<br>");
+		out.println("<h4 id=\"p3Hand\">you already have a "+app.getPlayer(2).getHands()+"</h4><br>");
 		out.println("<input type=\"checkbox\" name=\"p3card1\" value=\"1\"> "+temp3[0]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p3card2\" value=\"1\"> "+temp3[1]+"<br>");
 		out.println("<input type=\"checkbox\" name=\"p3card3\" value=\"1\" >"+temp3[2]+"<br>");
