@@ -97,6 +97,7 @@ public class IndexPage extends HttpServlet {
 		if(numOfAI==3)
 		{
 			out.println("<h3>All 3 players are AI, just click submit to see the result.</h3>");
+			
 		}
 		else
 		{
