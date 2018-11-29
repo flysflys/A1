@@ -70,17 +70,14 @@ public class IndexPage extends HttpServlet {
 			htmlEnd(out);
 			return;
 		}
-		if(numOfPlayers==3)
-		{
-			app.threePlayersGame();
-		}
-		app.setNumberOfPlayers(numOfPlayers);
+		app.setNumberOfPlayers(numOfPlayers,numOfAI);
+		app.readFile();
+		
+		
 		htmlStart(out);
 		out.println("<h4 id=\"numP\">Players number: "+app.getPlayerNumber()+"</h4>");
 		out.println("<h4 id=\"numAI\">AI number: "+numOfAI+"</h4>");
-		out.println("<h3 id=\"hand\">you have a "+app.getHands(app.convertStringToInt(app.getPlayerHands(1)))+"</h3>");
-		out.println("<h3>you have the cards below, click on the card you want to exchange and "
-				+ "submit button");
+		
 		
 		/*<form action="/result">
 		 <input type="checkbox" name="card1" value="1"> S1<br>
@@ -91,13 +88,57 @@ public class IndexPage extends HttpServlet {
 		<input type="submit" value="Submit">
 		</form>*/
 
-		String[] temp=app.getPlayerHands(1);
+		String[] temp=app.getPlayerHands(0);
+		String[] temp2=app.getPlayerHands(1);
+		String[] temp3=app.getPlayerHands(2);
+		
 		out.println("<form action=\"Result\">");
-		out.println("<input type=\"checkbox\" name=\"card1\" value=\"1\"> "+temp[0]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"card2\" value=\"1\"> "+temp[1]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"card3\" value=\"1\" >"+temp[2]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"card4\" value=\"1\" >"+temp[3]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"card5\" value=\"1\" >"+temp[4]+"<br>");
+		
+		if(numOfAI==3)
+		{
+			out.println("<h3>All 3 players are AI, just click submit to see the result.</h3>");
+		}
+		else
+		{
+		out.println("<h3>player1 has the cards below, click on the card you want to exchange</h3>");
+		out.println("you already have a "+app.getPlayer(0).getHands()+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p1card1\" value=\"1\"> "+temp[0]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p1card2\" value=\"1\"> "+temp[1]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p1card3\" value=\"1\" >"+temp[2]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p1card4\" value=\"1\" >"+temp[3]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p1card5\" value=\"1\" >"+temp[4]+"<br>");
+		}
+		
+		if(numOfAI==2)
+		{
+			out.println("<h3>Reset of 2 players are AI, just click submit to see the result.</h3>");
+		}
+		
+		else if(numOfAI!=3)
+		{
+		out.println("<h3>player2 has the cards below, click on the card you want to exchange</h3>");
+		out.println("you already have a "+app.getPlayer(1).getHands()+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p2card1\" value=\"1\"> "+temp2[0]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p2card2\" value=\"1\"> "+temp2[1]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p2card3\" value=\"1\" >"+temp2[2]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p2card4\" value=\"1\" >"+temp2[3]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p2card5\" value=\"1\" >"+temp2[4]+"<br>");
+		}
+		
+		if(numOfAI==1)
+		{
+			out.println("<h3>The last player is AI, just click submit to see the result.</h3>");
+		}
+		if(numOfAI==0)
+		{
+		out.println("<h3>player3 has the cards below, click on the card you want to exchange</h3>");
+		out.println("you already have a "+app.getPlayer(2).getHands()+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p3card1\" value=\"1\"> "+temp3[0]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p3card2\" value=\"1\"> "+temp3[1]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p3card3\" value=\"1\" >"+temp3[2]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p3card4\" value=\"1\" >"+temp3[3]+"<br>");
+		out.println("<input type=\"checkbox\" name=\"p3card5\" value=\"1\" >"+temp3[4]+"<br>");
+		}
 		out.println("<input type=\"submit\" value=\"Submit\">");
 		out.println("</form>");
 		

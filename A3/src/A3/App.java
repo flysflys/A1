@@ -4,10 +4,6 @@ import java.io.*;
 public class App {
 	Utl utl=new Utl();
 	Player[] players=new Player[3];
-	String[] p1Cards;
-	String[] p2Cards;
-	String[] p3Cards;
-	Human human=new Human();
 	int humanPlayers=0,aiPlayers=0;
 	int[] totolCards=new int[30];
 
@@ -18,10 +14,14 @@ public class App {
 		numberOfPlayers=i;
 		humanPlayers=p;
 		aiPlayers=i-p;
+		players[0]=new Player();
+		players[1]=new Player();
+		players[2]=new Player();
 	}
 	
 	public void readFile()
 	{
+		
 		File file = new File(path);  
 		
 		String str; 
@@ -51,10 +51,11 @@ public class App {
 				tempAry3[i]=tempAry[i+10];
 			}
 			
+			//System.out.println("reading done!  "+players[0].toString());
 			players[0].giveCard(tempAry1);
 			players[1].giveCard(tempAry2);
 			players[2].giveCard(tempAry3);
-			
+			//System.out.println("reading done!!!!!!  ");
 			for(int i =0;i<5;i++)
 			{				
 				tempAry1[i]=tempAry[i+15];
@@ -75,7 +76,7 @@ public class App {
 		}
 		catch (Exception e)
 		{
-			System.out.print("ERROR!");
+			System.out.println("ERROR!!!!!"+e.toString());
 		}
 	}
 	public String[] getPlayerHands(int p)
@@ -291,7 +292,8 @@ public class App {
 	{
 		players[p].redraw(cards);
 	}
-	
+	public Player getPlayer(int i)
+	{return players[i];}
 	public int getPlayerNumber()
 	{
 		return numberOfPlayers;

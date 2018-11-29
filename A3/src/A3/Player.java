@@ -7,7 +7,10 @@ public class Player {
 	protected String[] extraCardsStr;
 	protected int[] extraCards;
 	protected int[] cardNumCount;
-	
+	public Hands getHands()
+	{
+		return utl.getHands(cards);
+	}
 	public void redraw(int [] cards)
 	{
 		for(int i =0;i<cards.length;i++)
