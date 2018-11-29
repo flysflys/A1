@@ -41,13 +41,23 @@ public class IndexPage extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String numOfPlayersStr=request.getParameter("numOfPlayer");
 		int numOfPlayers;
+		String numOfAIStr=request.getParameter("numOfAI");
+		int numOfAI;
 		try
 		{
+			numOfAI=Integer.parseInt(numOfAIStr);
 			numOfPlayers=Integer.parseInt(numOfPlayersStr);
 			if(!(numOfPlayers==2||numOfPlayers==3))
 			{
 				htmlStart(out);
 				out.println("Error! please enter a number that is 2 or 3!");
+				htmlEnd(out);
+				return;
+			}
+			if(numOfAI>numOfPlayers||numOfAI<0)
+			{
+				htmlStart(out);
+				out.println("Error! please enter correct AI number!");
 				htmlEnd(out);
 				return;
 			}
@@ -67,7 +77,7 @@ public class IndexPage extends HttpServlet {
 		app.setNumberOfPlayers(numOfPlayers);
 		htmlStart(out);
 		out.println("<h4 id=\"numP\">Players number: "+app.getPlayerNumber()+"</h4>");
-		
+		out.println("<h4 id=\"numAI\">AI number: "+numOfAI+"</h4>");
 		out.println("<h3 id=\"hand\">you have a "+app.getHands(app.convertStringToInt(app.getPlayerHands(1)))+"</h3>");
 		out.println("<h3>you have the cards below, click on the card you want to exchange and "
 				+ "submit button");
