@@ -2,5 +2,5 @@ package A3;
 
 public enum Winner {
 	
-	OPPONENT,AIP,TIE
+	PLAYER1,PLAYER2,PLAYER3
 }
