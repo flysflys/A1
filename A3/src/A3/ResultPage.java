@@ -32,7 +32,10 @@ public class ResultPage extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		out.println("<html><body>");
-		out.println("<h3>you win!</h3>");
+
+		
+		
+		
 		out.println("</html></body>");
 	}
 
