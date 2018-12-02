@@ -1,53 +1,74 @@
 package A3;
 
-public class Player {
+public abstract class Player {
 	protected Utl utl=new Utl();
-	protected String[] cardsStr;
+	protected String[] cardStr;
 	protected int[] cards;
 	protected String[] extraCardsStr;
 	protected int[] extraCards;
 	protected int[] cardNumCount;
+	protected String beforeCards;
 	public Hands getHands()
 	{
+		cards=utl.sortCards(cards);
 		return utl.getHands(cards);
 	}
-	public void redraw(int [] cards)
+	public String getBeforeCards()
 	{
-		for(int i =0;i<cards.length;i++)
+		return beforeCards;
+	}
+	public String getAfterCards()
+	{
+		String temp="";
+		for(int i=0;i<5;i++)
 		{
-			cards[cards[i]]=extraCards[i];
-			//System.out.println("draw a "+getStringOfCard(extraCards[i]));
+			temp+=utl.getStringOfCard(cards[i])+" ";
 		}
-		cards=utl.sortCards(cards);
-		cardNumCount=utl.countNum(cards);
+		return temp;
 	}
-	public void giveCard(String str)
+	public void redraw(int [] cardsR)
 	{
-		cardsStr=str.split("\\s+");
-		cards=utl.convertStringToInt(cardsStr);
-		cards=utl.sortCards(cards);
+		
+		if(cardsR.length==5)
+		{
+			cards=extraCards;
+		}
+		else
+		{
+			
+			for(int i =0;i<cardsR.length;i++)
+			{
+				//System.out.println(cardsR[i]);
+				cards[cardsR[i]-1]=extraCards[i];
+				//System.out.println("draw a "+getStringOfCard(extraCards[i]));
+			}
+		}
+		//cards=utl.sortCards(cards);
 		cardNumCount=utl.countNum(cards);
 	}
+	
 	public void giveCard(String[] str)
 	{
-		cardsStr=str;
-		cards=utl.convertStringToInt(cardsStr);
-		cards=utl.sortCards(cards);
+		
+		cardStr=str;
+		System.out.println();
+		cards=utl.convertStringToInt(cardStr);
+		//cards=utl.sortCards(cards);
 		cardNumCount=utl.countNum(cards);
+		beforeCards=cardStr[0]+" "+cardStr[1]+" "+cardStr[2]+" "+cardStr[3]+" "+cardStr[4];
 	}
-	public void giveExtraCard(String str)
+	
+	public void giveExtraCard(String[] stry)
 	{
-		extraCardsStr=str.split("\\s+");
+		
+		extraCardsStr=stry;
 		extraCards=utl.convertStringToInt(extraCardsStr);
-	}
-	public void giveExtraCard(String[] str)
-	{
-		extraCardsStr=str;
-		extraCards=utl.convertStringToInt(extraCardsStr);
+		
 	}
 	public String[] getCardsStrAry()
 	{
-		return cardsStr;
+		
+		return cardStr;
 	}
 	public int[] getCards()
 	{
@@ -57,4 +78,6 @@ public class Player {
 	{
 		return cardNumCount;
 	}
+	public abstract String getredrawNum(); 
+	public abstract void exchange();
 }

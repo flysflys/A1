@@ -272,12 +272,14 @@ public  class Utl {
 		{
 			result="S";
 		}
-		if(card%13>=1&&card%13<=10)
+		if(card%13>=2&&card%13<=10)
 		{
 			result=result+(card%13);
 		}
 		else
 		{
+			if(card%13==1)
+				result=result+"A";
 			if(card%13==11)
 				result=result+"J";
 			if(card%13==12)

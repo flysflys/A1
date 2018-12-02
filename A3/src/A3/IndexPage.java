@@ -97,9 +97,10 @@ public class IndexPage extends HttpServlet {
 		if(numOfAI==3)
 		{
 			out.println("<h3>All 3 players are AI, just click submit to see the result.</h3>");
-			out.println("<input type=\"hidden\" name=\"Ai1cards\" value=\""+temp3[4]+"\" >");
-			out.println("<input type=\"hidden\" name=\"Ai2cards\" value=\""+temp3[4]+"\" >");
-			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+temp3[4]+"\" >");
+			String [] airedraw=app.getAIredrawNum(numOfAI);
+			out.println("<input type=\"hidden\" name=\"Ai1cards\" value=\""+airedraw[0]+"\" >");
+			out.println("<input type=\"hidden\" name=\"Ai2cards\" value=\""+airedraw[1]+"\" >");
+			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+airedraw[2]+"\" >");
 		}
 		else
 		{
@@ -115,9 +116,10 @@ public class IndexPage extends HttpServlet {
 		if(numOfAI==2)
 		{
 			out.println("<h3>Reset of 2 players are AI, just click submit to see the result.</h3>");
-			
-			out.println("<input type=\"hidden\" name=\"Ai2cards\" value=\""+temp3[4]+"\" >");
-			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+temp3[4]+"\" >");
+			String [] airedraw=app.getAIredrawNum(numOfAI);
+			out.println("<input type=\"hidden\" name=\"Ai2cards\" value=\""+airedraw[0]+"\" >");
+			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+airedraw[1]+"\" >");
+
 		}
 		
 		else if(numOfAI!=3)
@@ -134,7 +136,9 @@ public class IndexPage extends HttpServlet {
 		if(numOfAI==1)
 		{
 			out.println("<h3>The last player is AI, just click submit to see the result.</h3>");
-			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+temp3[4]+"\" >");
+			String [] airedraw=app.getAIredrawNum(numOfAI);
+			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+airedraw[0]+"\" >");
+
 		}
 		if(numOfAI==0)
 		{
@@ -147,7 +151,8 @@ public class IndexPage extends HttpServlet {
 		out.println("<input type=\"checkbox\" name=\"p3card5\" value=\"1\" >"+temp3[4]+"<br>");
 		}
 		
-		
+		out.println("<input type=\"hidden\" name=\"Players\" value=\""+numOfPlayers+"\" >");
+		out.println("<input type=\"hidden\" name=\"AI\" value=\""+numOfAI+"\" >");
 		out.println("<input type=\"submit\" value=\"Submit\">");
 		
 		out.println("</form>");

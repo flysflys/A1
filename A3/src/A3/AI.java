@@ -1,7 +1,7 @@
 package A3;
 
 public class AI extends Player{
-
+	int[] cardsRedraw;
 	public void exchange()
 	{
 		Hands oldHands=utl.getHands(cards); 
@@ -14,14 +14,14 @@ public class AI extends Player{
 		{
 			//System.out.println("1 card away from RF");
 			int[] temp= {cardsFromRF()};
-			redraw(temp);
+			cardsRedraw=(temp);
 			
 		}
 		else if(cardsFromSF()!=-1)
 		{
 			//System.out.println("1 card away from SF");
 			int[] temp= {cardsFromSF()};
-			redraw(temp);
+			cardsRedraw=(temp);
 			
 			
 		}
@@ -29,7 +29,7 @@ public class AI extends Player{
 		{
 			//System.out.println("1 card away from FH");
 			int[] temp= {cardsFromFOAK()};
-			redraw(temp);
+			cardsRedraw=(temp);
 			
 			
 		}
@@ -45,56 +45,56 @@ public class AI extends Player{
 		{
 			//System.out.println("1 card away from FLUSH");
 			int[] temp= {cardsFromFLUSH()};
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(cardsFromSTRAIGHT()!=-1)
 		{
 			//System.out.println("1 card away from STRAIGHT");
 			int[] temp= {cardsFromSTRAIGHT()};
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(cardsFromS7()!=null)
 		{
 			//System.out.println("3 cards are in same suit, exchange other 2");
 			int[] temp= cardsFromS7();
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(threeInSuits()!=null)
 		{
 			//System.out.println("3 cards are in same rank, exchange other 2");
 			int[] temp= threeInSuits();
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(cardsFromS8()!=null)
 		{
 			//System.out.println("3 cards are in sequence, exchange other 2");
 			int[] temp= cardsFromS8();
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(twoPair()!=-1)
 		{
 			//System.out.println("2 pairs, exchange other card");
 			int[] temp= new int[] {twoPair()};
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else if(cardsFromS9()!=null)
 		{
 			//System.out.println("1 pair, exchange other 3");
 			int[] temp= cardsFromS9();
-			redraw(temp);
+			cardsRedraw=(temp);
 						
 		}
 		else
 		{
 			//System.out.println("keep the highest 2, exchange other 3");
 			int[] temp= cardsFromS10();
-			redraw(temp);
+			cardsRedraw=(temp);
 				
 		}		
 	}
@@ -675,5 +675,13 @@ public class AI extends Player{
 			
 		}
 		return null;
+	}
+	public String getredrawNum() {
+		String temp="";
+		if(cardsRedraw==null)
+			return null;
+		for (int x=0;x<cardsRedraw.length;x++)
+			temp+=Integer.toString(cardsRedraw[x]);
+		return temp;
 	}
 }

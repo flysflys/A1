@@ -12,11 +12,33 @@ public class App {
 	public void setNumberOfPlayers(int i,int p)
 	{		
 		numberOfPlayers=i;
-		humanPlayers=p;
-		aiPlayers=i-p;
-		players[0]=new Player();
-		players[1]=new Player();
-		players[2]=new Player();
+		humanPlayers=i-p;
+		aiPlayers=p;
+		if(aiPlayers==3)
+		{
+			players[0]=new AI();
+			players[1]=new AI();
+			players[2]=new AI();
+		}
+		if(aiPlayers==2)
+		{
+			players[0]=new Human();
+			players[1]=new AI();
+			players[2]=new AI();
+		}
+		if(aiPlayers==1)
+		{
+			players[0]=new Human();
+			players[1]=new Human();
+			players[2]=new AI();
+		}
+		if(aiPlayers==0)
+		{
+			players[0]=new Human();
+			players[1]=new Human();
+			players[2]=new Human();
+		}
+
 	}
 	
 	public void readFile()
@@ -37,6 +59,9 @@ public class App {
 			String[] tempAry1=new String[5];
 			String[] tempAry2=new String[5];
 			String[] tempAry3=new String[5];
+			String[] tempAry4=new String[5];
+			String[] tempAry5=new String[5];
+			String[] tempAry6=new String[5];
 			for(int i =0;i<5;i++)
 			{				
 				tempAry1[i]=tempAry[i];
@@ -58,20 +83,20 @@ public class App {
 			//System.out.println("reading done!!!!!!  ");
 			for(int i =0;i<5;i++)
 			{				
-				tempAry1[i]=tempAry[i+15];
+				tempAry4[i]=tempAry[i+15];
 			}
 
 			for(int i =0;i<5;i++)
 			{
-				tempAry2[i]=tempAry[i+20];
+				tempAry5[i]=tempAry[i+20];
 			}
 			for(int i =0;i<5;i++)
 			{
-				tempAry3[i]=tempAry[i+25];
+				tempAry6[i]=tempAry[i+25];
 			}
-			players[0].giveExtraCard(tempAry1);
-			players[1].giveExtraCard(tempAry2);
-			players[2].giveExtraCard(tempAry3);
+			players[0].giveExtraCard(tempAry4);
+			players[1].giveExtraCard(tempAry5);
+			players[2].giveExtraCard(tempAry6);
 
 		}
 		catch (Exception e)
@@ -81,9 +106,14 @@ public class App {
 	}
 	public String[] getPlayerHands(int p)
 	{
+		
 		return players[p].getCardsStrAry();
 	}
-
+	public int getWinner()
+	{
+		int temp=winner(0,1);
+		return winner(temp,2);
+	}
 	public int winner(int i,int i2)
 	{
 		Hands card1=utl.getHands(players[i].getCards());
@@ -288,14 +318,61 @@ public class App {
 		return 0;
 	}
 	
-	private void redraw(int [] cards,int p)
+	public void redraw(String str,int p)
 	{
-		players[p].redraw(cards);
+		if(str.length()==0)
+			return;
+		if(str.length()==1)
+		{
+			players[p].redraw(new int[] {Integer.parseInt(str)});
+			return;
+		}
+		String[] temp=str.split("");
+		int [] tempInt=new int [temp.length];
+		
+		for(int i=0;i<temp.length;i++)
+		{
+			tempInt[i]=Integer.parseInt(temp[i]);
+		}
+		players[p].redraw(tempInt);
 	}
 	public Player getPlayer(int i)
 	{return players[i];}
 	public int getPlayerNumber()
 	{
 		return numberOfPlayers;
+	}
+	public String getBeforeCards(int p)
+	{
+		return players[p].getBeforeCards();
+	}
+	public String getAfterCards(int p)
+	{
+		return players[p].getAfterCards();
+	}
+	public String[] getAIredrawNum(int i)
+	{
+
+		if(i==1)
+		{
+			players[2].exchange();
+			return new String[] {players[2].getredrawNum()};
+		}
+		if(i==2)
+		{
+			players[1].exchange();
+			players[2].exchange();
+			return new String[] {players[1].getredrawNum(),players[2].getredrawNum()};
+			
+		}
+		if(i==3)
+		{
+			players[1].exchange();
+			players[2].exchange();
+			players[0].exchange();
+			return new String[] {players[0].getredrawNum(),players[1].getredrawNum(),players[2].getredrawNum()};
+		}
+		
+		return null;
 	}
 }
