@@ -27,31 +27,42 @@ public class WinnerTest {
         
         
 	}
+	private void player3Game()
+	{
+		driver.findElement(By.id("numOfPlayers")).clear();
+    	driver.findElement(By.id("numOfAI")).clear();
+		driver.findElement(By.id("numOfPlayers")).sendKeys("3");
+    	driver.findElement(By.id("numOfAI")).sendKeys("0");
+    	try
+        {	Thread.sleep(1000);}
+    	catch(Exception e)
+        {
+        }
+    	driver.findElement(By.id("startButt")).click();
 
+	}
 	@Test
-	public void WinnerTesting() {
+	public void RFWins() {
 		try
         {
+			driver.navigate().back();
+			driver.navigate().back();
         	Thread.sleep(500);
-        	driver.findElement(By.id("numOfPlayers")).sendKeys("3");
-        	driver.findElement(By.id("numOfAI")).sendKeys("0");
- 
-        	Thread.sleep(1000);
-        	driver.findElement(By.id("startButt")).click();
+        	player3Game();
         	//Thread.sleep(3000);
 
         	/*WebDriverWait wait = new WebDriverWait(driver, 10);
         	WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("p2card2")));*/
-        	Thread.sleep(1500);
-        	driver.findElement(By.id("p2card2")).click();
+
+        	/*driver.findElement(By.id("p2card2")).click();
     		driver.findElement(By.id("p2card3")).click();
     		driver.findElement(By.id("p2card4")).click();
     		driver.findElement(By.id("p3card1")).click();
-    		driver.findElement(By.id("p3card5")).click();
+    		driver.findElement(By.id("p3card5")).click();*/
 
     		Thread.sleep(2000);
     		driver.findElement(By.id("butt")).click();
-    		Thread.sleep(2000);
+    		Thread.sleep(3000);
 
         }
         catch(Exception e)
@@ -62,8 +73,302 @@ public class WinnerTest {
 		//System.out.println("#="+temp);
 		String temp=driver.findElement(By.id("Winner")).getText();
 		String temp2=temp.charAt(temp.length()-1)+"";
-		assertEquals("2",temp2);
-		driver.close();
+		assertEquals("1",temp2);
+		
+		//driver.close();
+	}
+	@Test
+	public void SFWins() {
+		try
+        {
+			
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+        	driver.findElement(By.id("p1card5")).click();
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(3000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
+	}
+	@Test
+	public void FOAKWins() {
+		try
+        {
+			Thread.sleep(3000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			driver.findElement(By.id("p1card1")).click();
+			driver.findElement(By.id("p1card2")).click();
+			driver.findElement(By.id("p1card3")).click();
+			driver.findElement(By.id("p1card4")).click();
+			
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card3")).click();
+			
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card5")).click();
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("1",temp2);
+		
+	}
+	@Test
+	public void FHWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			driver.findElement(By.id("p1card5")).click();
+			
+			
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card2")).click();
+			driver.findElement(By.id("p2card4")).click();
+			
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card2")).click();
+			driver.findElement(By.id("p3card3")).click();
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
+	}
+	
+	@Test
+	public void TOAKWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+
+			driver.findElement(By.id("p1card5")).click();
+			
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card2")).click();
+			driver.findElement(By.id("p2card4")).click();
+			driver.findElement(By.id("p2card5")).click();
+
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card2")).click();
+			driver.findElement(By.id("p3card3")).click();
+			driver.findElement(By.id("p3card4")).click();
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
+	}
+	
+	@Test
+	public void STRAIGHTWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			
+			driver.findElement(By.id("p1card1")).click();
+
+
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card3")).click();
+			
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card5")).click();
+			
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("1",temp2);
+		
+	}
+	@Test
+	public void FLUSHWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			
+			driver.findElement(By.id("p1card5")).click();
+
+
+
+			driver.findElement(By.id("p2card5")).click();
+			
+			
+			driver.findElement(By.id("p3card5")).click();
+			
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
+	}
+	@Test
+	public void TPWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			
+			driver.findElement(By.id("p1card5")).click();
+
+
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card2")).click();
+			driver.findElement(By.id("p2card3")).click();
+			driver.findElement(By.id("p2card4")).click();
+			
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card2")).click();
+			driver.findElement(By.id("p3card3")).click();
+			driver.findElement(By.id("p3card5")).click();
+			
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
+	}
+	@Test
+	public void PairWins() {
+		try
+        {
+			Thread.sleep(2000);
+			driver.navigate().back();
+			driver.navigate().back();
+			player3Game();
+			
+			driver.findElement(By.id("p1card5")).click();
+
+
+			driver.findElement(By.id("p2card1")).click();
+			driver.findElement(By.id("p2card2")).click();
+			driver.findElement(By.id("p2card3")).click();
+			driver.findElement(By.id("p2card4")).click();
+			driver.findElement(By.id("p2card5")).click();
+			
+			driver.findElement(By.id("p3card1")).click();
+			driver.findElement(By.id("p3card2")).click();
+			driver.findElement(By.id("p3card3")).click();
+			driver.findElement(By.id("p3card4")).click();
+			driver.findElement(By.id("p3card5")).click();
+			
+    		
+
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("butt")).click();
+    		Thread.sleep(1000);
+
+        }
+        catch(Exception e)
+        {
+        	
+        }
+		
+		//System.out.println("#="+temp);
+		String temp=driver.findElement(By.id("Winner")).getText();
+		String temp2=temp.charAt(temp.length()-1)+"";
+		assertEquals("3",temp2);
+		
 	}
 
 }
