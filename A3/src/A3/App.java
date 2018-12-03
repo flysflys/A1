@@ -112,12 +112,20 @@ public class App {
 	public int getWinner()
 	{
 		int temp=winner(0,1);
-		return winner(temp,2);
+		System.out.println("FIRST ROUND= "+temp);
+		int temp2=winner(temp-1,2);
+		System.out.println("Final ROUND= "+temp2);
+		if(temp2==1)
+			return temp;
+		return 3;
+		
 	}
 	public int winner(int i,int i2)
 	{
 		Hands card1=utl.getHands(players[i].getCards());
 		Hands card2=utl.getHands(players[i2].getCards());
+		/*System.out.println("i hand= "+card1);
+		System.out.println("i2 hand= "+card2);*/
 		int result;
 		//System.out.println("AIP has a "+aipC.toString()+", OPPONENT has a " +opC.toString() );
 		if(card1.compareTo(card2)<0)
@@ -142,12 +150,12 @@ public class App {
 		
 		if(card1==Hands.SF)
 		{
-			//System.out.println("both have SF, comparing the highest Card");
+			System.out.println("both have SF, comparing the highest Card");
 			int p1HighC=utl.isStraight(players[i].getCardsCount()),p2HighC=utl.isStraight(players[i2].getCardsCount());
 			result=compareResult(p1HighC,p2HighC);
 			if(result==0)
 			{
-				//System.out.println("both have same highest card, comparing the Suit");
+				System.out.println("both have same highest card, comparing the Suit"+players[i].getCards()[0]+players[i2].getCards()[0]);
 				result=compareResult(utl.getSuit(players[i].getCards()[0]),utl.getSuit(players[i2].getCards()[0]));
 			}
 			if(result==0)
@@ -183,7 +191,7 @@ public class App {
 
 			if(result==0)
 			{
-				System.out.println("both have same highest card, comparing the Suit");
+				//System.out.println("both have same highest card, comparing the Suit");
 				result=compareResult(utl.getSuit(players[i].getCards()[0]),utl.getSuit(players[i2].getCards()[0]));
 			}
 			if(result==0)
@@ -317,7 +325,22 @@ public class App {
 		}
 		return 0;
 	}
-	
+
+	public int compareSuitResult(int p1,int p2)
+	{
+		if(p1<p2)
+		{
+			//System.out.println("AIP wins!");
+			return 1;
+		}
+		if(p1>p2)
+		{
+			//System.out.println("opponent wins!");
+			return 2;
+		}
+		return 0;
+	}
+
 	public void redraw(String str,int p)
 	{
 		if(str.length()==0)
@@ -374,5 +397,10 @@ public class App {
 		}
 		
 		return null;
+	}
+	public void printCards()
+	{
+		players[0].printCards();
+		
 	}
 }

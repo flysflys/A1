@@ -127,7 +127,7 @@ public class ResultPage extends HttpServlet {
 		out.println("<h4 id=\"p2Hand\">Player2 has a "+app.getPlayer(1).getHands()+"</h4><br>");
 		out.println("<h4 id=\"p3Hand\">Player3 has a "+app.getPlayer(2).getHands()+"</h4><br>");
 		
-		out.println("<h2 id=\"Winner\">The Winner is Player"+app.getWinner()+"!!</h4><br>");
+		out.println("<h2 id=\"Winner\">The Winner is Player"+app.getWinner()+"</h4><br>");
 		
 		out.println("</html></body>");
 	}

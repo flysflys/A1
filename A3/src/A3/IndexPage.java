@@ -102,15 +102,15 @@ public class IndexPage extends HttpServlet {
 			out.println("<input type=\"hidden\" name=\"Ai2cards\" value=\""+airedraw[1]+"\" >");
 			out.println("<input type=\"hidden\" name=\"Ai3cards\" value=\""+airedraw[2]+"\" >");
 		}
-		else
+		else 
 		{
 		out.println("<h3>player1 has the cards below, click on the card you want to exchange</h3>");
 		out.println("<h4 id=\"p1Hand\">you already have a "+app.getPlayer(0).getHands()+"</h4><br>");
-		out.println("<input type=\"checkbox\" name=\"p1card1\" value=\"1\"> "+temp[0]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p1card2\" value=\"1\"> "+temp[1]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p1card3\" value=\"1\" >"+temp[2]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p1card4\" value=\"1\" >"+temp[3]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p1card5\" value=\"1\" >"+temp[4]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p1card1\" name=\"p1card1\" value=\"1\"> "+temp[0]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p1card2\" name=\"p1card2\" value=\"1\"> "+temp[1]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p1card3\" name=\"p1card3\" value=\"1\" >"+temp[2]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p1card4\" name=\"p1card4\" value=\"1\" >"+temp[3]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p1card5\" name=\"p1card5\" value=\"1\" >"+temp[4]+"<br>");
 		}
 		
 		if(numOfAI==2)
@@ -126,11 +126,11 @@ public class IndexPage extends HttpServlet {
 		{
 		out.println("<h3>player2 has the cards below, click on the card you want to exchange</h3>");
 		out.println("<h4 id=\"p2Hand\">you already have a "+app.getPlayer(1).getHands()+"</h4><br>");
-		out.println("<input type=\"checkbox\" name=\"p2card1\" value=\"1\"> "+temp2[0]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p2card2\" value=\"1\"> "+temp2[1]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p2card3\" value=\"1\" >"+temp2[2]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p2card4\" value=\"1\" >"+temp2[3]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p2card5\" value=\"1\" >"+temp2[4]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p2card1\"name=\"p2card1\" value=\"1\"> "+temp2[0]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p2card2\"name=\"p2card2\" value=\"1\"> "+temp2[1]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p2card3\"name=\"p2card3\" value=\"1\" >"+temp2[2]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p2card4\"name=\"p2card4\" value=\"1\" >"+temp2[3]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p2card5\"name=\"p2card5\" value=\"1\" >"+temp2[4]+"<br>");
 		}
 		
 		if(numOfAI==1)
@@ -144,20 +144,19 @@ public class IndexPage extends HttpServlet {
 		{
 		out.println("<h3>player3 has the cards below, click on the card you want to exchange</h3>");
 		out.println("<h4 id=\"p3Hand\">you already have a "+app.getPlayer(2).getHands()+"</h4><br>");
-		out.println("<input type=\"checkbox\" name=\"p3card1\" value=\"1\"> "+temp3[0]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p3card2\" value=\"1\"> "+temp3[1]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p3card3\" value=\"1\" >"+temp3[2]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p3card4\" value=\"1\" >"+temp3[3]+"<br>");
-		out.println("<input type=\"checkbox\" name=\"p3card5\" value=\"1\" >"+temp3[4]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p3card1\"name=\"p3card1\" value=\"1\"> "+temp3[0]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p3card2\"name=\"p3card2\" value=\"1\"> "+temp3[1]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p3card3\"name=\"p3card3\" value=\"1\" >"+temp3[2]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p3card4\"name=\"p3card4\" value=\"1\" >"+temp3[3]+"<br>");
+		out.println("<input type=\"checkbox\" id=\"p3card5\"name=\"p3card5\" value=\"1\" >"+temp3[4]+"<br>");
 		}
 		
 		out.println("<input type=\"hidden\" name=\"Players\" value=\""+numOfPlayers+"\" >");
 		out.println("<input type=\"hidden\" name=\"AI\" value=\""+numOfAI+"\" >");
-		out.println("<input type=\"submit\" value=\"Submit\">");
+		out.println("<input type=\"submit\" value=\"Submit\" id=\"butt\"> ");
 		
 		out.println("</form>");
-		
-		out.println("</html></body>");
+
 		htmlEnd(out);
 	}
 

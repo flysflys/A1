@@ -294,6 +294,7 @@ public  class Utl {
 		int[] temp=new int[13];
 		for(int i=0;i<5;i++)
 		{			
+			//System.out.println("i="+i);
 			if(cards[i]%13==1)
 			{
 				

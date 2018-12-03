@@ -39,7 +39,7 @@ public abstract class Player {
 			for(int i =0;i<cardsR.length;i++)
 			{
 				//System.out.println(cardsR[i]);
-				cards[cardsR[i]-1]=extraCards[i];
+				cards[cardsR[i]-1]=extraCards[cardsR[i]-1];
 				//System.out.println("draw a "+getStringOfCard(extraCards[i]));
 			}
 		}
@@ -80,4 +80,9 @@ public abstract class Player {
 	}
 	public abstract String getredrawNum(); 
 	public abstract void exchange();
+	public void printCards()
+	{
+		System.out.println("cards= "+cards[0]+" "+cards[1]+" "+cards[2]+" "+cards[3]+" "+cards[4]);
+		
+	}
 }
