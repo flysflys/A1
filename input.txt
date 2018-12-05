@@ -1,0 +1,47 @@
+CA C10 CJ CQ CK D3 D4 D5 D6 D7 S3 S4 S5 S6 S7 S9 D9 H9 C9 S3 C5 S5 S10 H7 DK H7 C7 H6 H9 SK
+ 
+P1=C RF 
+P1C1=CK straight
+p1 C1 c2 c3 c4 = four of  a kind
+p1 c5=none
+
+P2=D7 SF
+P2 C1C2C4=5 FH
+P2 C1C2C4C5=5 TOAK
+P2 ALL=5 pair 
+p2 c1c2c3c4=7 two pair
+P2 C5 = DK FLUSH
+p2 c1 c3=none
+
+P3=S7 SF
+P3 C1C2C3=7 FH
+P3 C1C2C3C4=7 TOAK
+P3 ALL=7 pair 
+p3 c1c2c3c5=7 two pair
+P3 C5 = DK FLUSH
+p3 c1 c5=none 
+
+
+CA C10 CJ CQ CK
+S9 D9 H9 C9 S3
+
+D3 D4 D5 D6 D7
+C5 S5 S10 H7 DK
+
+S3 S4 S5 S6 S7
+H7 C7 H6 H9 SK
+
+
+-------------------------------------------------------------------2Hunman 1AI
+CA C10 CJ CQ CK D3 D4 D5 D6 D7 S3 C4 S5 H10 S7 S9 D9 H9 C9 S3 C5 S5 S10 H7 DK H7 C7 H6 H6 SK
+
+
+CA C10 CJ CQ CK
+S9 D9 H9 C9 S3
+
+D3 D4 D5 D6 D7
+C5 S5 S10 H7 DK
+
+S3 C4 S5 H10 S7
+H7 C7 H6 H6 SK
+

@@ -173,7 +173,7 @@ public class OneAITest {
 
 		String temp=driver.findElement(By.id("Winner")).getText();
 		String temp2=temp.charAt(temp.length()-1)+"";
-		assertEquals("2",temp2);
+		assertEquals("3",temp2);
 		
 		
 	}

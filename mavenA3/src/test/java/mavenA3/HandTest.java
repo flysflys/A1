@@ -47,7 +47,7 @@ public class HandTest {
 		tempStr=driver.findElement(By.id("p2Hand")).getText();
 		temp=tempStr.split("\\s+");
 
-		assertEquals("STRAIGHT",temp[temp.length-1]);
+		assertEquals("SF",temp[temp.length-1]);
 		
 		tempStr=driver.findElement(By.id("p3Hand")).getText();
 		temp=tempStr.split("\\s+");
