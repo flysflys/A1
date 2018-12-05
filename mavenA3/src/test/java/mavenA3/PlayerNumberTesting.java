@@ -105,7 +105,7 @@ public class PlayerNumberTesting {
 		driver.close();
 	}
 	@Test
-	public void PlayersNumberTesting5() {
+	public void PlayersNumberTesting4() {
 		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
 		driver = new FirefoxDriver();
         driver.get("http://localhost:8080/A3/Firstpage.html");
@@ -133,7 +133,7 @@ public class PlayerNumberTesting {
 		driver.close();
 	}
 	@Test
-	public void PlayersNumberTesting4() {
+	public void PlayersNumberTesting5() {
 		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
 		driver = new FirefoxDriver();
         driver.get("http://localhost:8080/A3/Firstpage.html");
@@ -151,12 +151,38 @@ public class PlayerNumberTesting {
         {
         	 
         }
-		String tempStr=driver.findElement(By.id("numP")).getText();
-		String temp=tempStr.charAt(tempStr.length()-1)+"";
-		tempStr=driver.findElement(By.id("numAI")).getText();
-		String temp2="";
+		String tempStr=driver.findElement(By.id("ErrorText")).getText();
+		String temp=tempStr.substring(0, 5);
+
 		//System.out.println("#="+temp);
-		assertEquals("ERROR",temp);
+		assertEquals("Error",temp);
+		driver.close();
+	}
+	
+	@Test
+	public void PlayersNumberTesting6() {
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\michael\\eclipse-workspace\\geckodriver.exe");
+		driver = new FirefoxDriver();
+        driver.get("http://localhost:8080/A3/Firstpage.html");
+        driver.manage().window().maximize();
+		try
+        {
+        	Thread.sleep(500);
+        	driver.findElement(By.id("numOfPlayers")).sendKeys("abc");
+        	driver.findElement(By.id("numOfAI")).sendKeys("4");
+        	Thread.sleep(1000);
+        	driver.findElement(By.id("startButt")).click();
+        	Thread.sleep(1000);
+        }
+        catch(Exception e)
+        {
+        	 
+        }
+		String tempStr=driver.findElement(By.id("ErrorText")).getText();
+		String temp=tempStr.substring(0, 5);
+
+		//System.out.println("#="+temp);
+		assertEquals("Error",temp);
 		driver.close();
 	}
 

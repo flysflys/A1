@@ -50,14 +50,14 @@ public class IndexPage extends HttpServlet {
 			if(!(numOfPlayers==2||numOfPlayers==3))
 			{
 				htmlStart(out);
-				out.println("Error! please enter a number that is 2 or 3!");
+				out.println("<h4 id=\"ErrorText\">Error! please enter a number that is 2 or 3!");
 				htmlEnd(out);
 				return;
 			}
 			if(numOfAI>numOfPlayers||numOfAI<0)
 			{
 				htmlStart(out);
-				out.println("Error! please enter correct AI number!");
+				out.println("<h4 id=\"ErrorText\">Error! please enter correct AI number!");
 				htmlEnd(out);
 				return;
 			}
@@ -66,7 +66,7 @@ public class IndexPage extends HttpServlet {
 		catch (NumberFormatException ex)
 		{
 			htmlStart(out);
-			out.println("Error! please enter a number!");
+			out.println("<h4 id=\"ErrorText\">Error! please enter a number!"+"</h4>");
 			htmlEnd(out);
 			return;
 		}
